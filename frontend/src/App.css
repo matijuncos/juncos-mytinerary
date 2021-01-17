@@ -39,7 +39,7 @@
   height: 62vh;
   margin: 6vh auto 0 auto;
   border-radius: 5px 90% 0% 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.205);
+  box-shadow: 8px -8px 10px rgba(0, 0, 0, 0.329);
   filter: saturate(0.3);
   display: flex;
   flex-direction: column;
@@ -99,12 +99,19 @@ video {
 .links p {
   margin: 0 2vh;
   padding: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icons {
+  margin-right: 5px;
 }
 nav img {
   width: 2.5em;
 }
+
 .carruselSection {
-  background-color: rgb(36, 35, 35);
+  background-color: rgb(16, 15, 16);
   padding: 5vh 0;
 }
 
@@ -175,7 +182,15 @@ nav img {
 .footer div {
   padding: 0 1vh;
 }
-
+.footerLeft {
+  border-right: solid white 1px;
+  flex: 1;
+  text-align: right;
+  font-size: 1.4rem;
+}
+.footerRight {
+  flex: 1;
+}
 .citiesSection {
   background-image: url("../src/assets/cities.jpg");
   background-size: cover;
@@ -197,16 +212,6 @@ nav img {
   border-bottom: solid 2px white;
 }
 
-.footerLeft {
-  border-right: solid white 1px;
-  flex: 1;
-  text-align: right;
-  font-size: 1.4rem;
-}
-.footerRight {
-  border-right: solid white 1px;
-  flex: 1;
-}
 .burger {
   display: none;
 }
@@ -272,5 +277,8 @@ nav img {
   .callToAction h2 {
     font-size: 1.5rem;
     margin-bottom: 2vh;
+  }
+  .footer {
+    padding: 2vh;
   }
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import user from '../assets/user.svg'
 import { NavLink } from "react-router-dom";
 import { FiMenu } from 'react-icons/fi';
+import { FaHome, FaPaperPlane } from "react-icons/fa";
 
 function Navbar() {
     const [nav, setNav] = useState(true);
@@ -15,10 +16,10 @@ function Navbar() {
                 <img src={user} alt="" />
                 <div>
                     <NavLink to="/" className="navLinks " exact={true}>
-                        <p>Home</p>
+                        <p><FaHome className="icons"/> Home</p>
                     </NavLink>
                     <NavLink to="/cities" className="navLinks">
-                        <p>Cities</p>
+                        <p><FaPaperPlane className="icons"/> Cities</p>
                     </NavLink>
                 </div>
                 
