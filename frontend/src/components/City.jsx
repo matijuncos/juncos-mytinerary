@@ -16,7 +16,11 @@ const City = (props) => {
             setCity(data.results)
             setLoading(false)
         })
+        .catch(error => {
+            console.log(error)
+        })
     },[id])
+
     if(loading){
         return <Loader/>
     }else{

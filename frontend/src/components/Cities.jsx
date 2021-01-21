@@ -8,7 +8,6 @@ import Loader from './Loader';
 const Cities = () => {
 
     const [cities, setcities] = useState([]);
-    const [input, setInput] = useState('');
     const [filteredCities, setFilteredCities] = useState([])   
     const [loading, setLoading]  = useState(true)
 
@@ -19,49 +18,44 @@ const Cities = () => {
             setFilteredCities(data.results)
             setLoading(false)
         })
+        .catch(error => {console.log(error)})
     }, []);
     
     const handleCities = (e) =>{
         const value = e.target.value
-        setInput(value)
+        const filteredData = cities.filter(city => city.cityName.toLowerCase().indexOf(value.toLowerCase().trim()) === 0 )
+       setFilteredCities(filteredData)
     }
 
-    useEffect(()=>{
-        const filteredData = cities.filter(city => city.cityName.toLowerCase().indexOf(input.toLowerCase().trim()) === 0 )
-       setFilteredCities(filteredData)
-       
-    },[input, cities])
-   
-    if(loading){
-        return(
-            <Loader/> 
-        )
-    }else{
-
-        return (
-            <div className="bigContainer">
-                    <img src={logo} alt=""/>
-                    <h2>Take a look at these cities!</h2>
-                    <input type="text" placeholder="Search here!" className="citiesInput" onChange={handleCities}/>
-                <div className="citiesContainer">
-                {
-                    filteredCities.map(city=>{
-                        const id = city._id
-                        return (
-                            <Link to={'/itineraries/'+id} className="cityLink" key={id}>
-                                <div style={{backgroundImage: `url(${city.cityPicture})`, height: '35vh', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}} className="eachCity">
-                                        <h3>{city.cityName}</h3>
-                                </div>
-                            </Link>
-                        )
-                    })
-                }
-                </div>
-                <Link to='/' className="linksBtn">
-                    <button className="backBtn">Go Back Home!<FaHome className="btnIcons"/></button>
-                </Link>
-            </div>
-        )
+        if(loading){
+            return <Loader/> 
+        }else{
+                return (
+                    <div className="bigContainer">
+                            <img src={logo} alt=""/>
+                            <h2>Take a look at these cities!</h2>
+                            <input type="text" placeholder="Search here!" className="citiesInput" onChange={handleCities}/>
+                        <div className="citiesContainer">
+                            
+                        {
+                            filteredCities.map(city=>{
+                                const id = city._id
+                                    return (
+                                        <Link to={'/itineraries/'+id} className="cityLink" key={id}>
+                                            <div style={{backgroundImage: `url(${city.cityPicture})`, height: '35vh', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}} className="eachCity">
+                                                    <h3>{city.cityName}</h3>
+                                            </div>
+                                        </Link>
+                                    )
+                            })
+                        }
+                        </div>
+                        <Link to='/' className="linksBtn">
+                            <button className="backBtn">Go Back Home!<FaHome className="btnIcons"/></button>
+                        </Link>
+                    </div>
+                )
+            
     }
 }
 
