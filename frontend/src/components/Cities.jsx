@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logov9.png'
 import { FaHome } from "react-icons/fa";
 import Loader from './Loader';
+import EachCity from './EachCity';
 
 
 const Cities = () => {
@@ -39,13 +40,8 @@ const Cities = () => {
                             
                         {
                             filteredCities.map(city=>{
-                                const id = city._id
-                                    return (
-                                        <Link to={'/itineraries/'+id} className="cityLink" key={id}>
-                                            <div style={{backgroundImage: `url(${city.cityPicture})`, height: '35vh', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}} className="eachCity">
-                                                    <h3>{city.cityName}</h3>
-                                            </div>
-                                        </Link>
+                                return (
+                                        <EachCity city={city} key={city._id}/>
                                     )
                             })
                         }
