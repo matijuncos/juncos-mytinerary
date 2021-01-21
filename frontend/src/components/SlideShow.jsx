@@ -51,13 +51,13 @@ class SlideShow extends Component {
         <div className="carruselSection">
           <h2 className="slidesTitle">Popular MYtineraries</h2>
           <Carousel disableArrowsOnEnd={false}>
-          {
-            items.map((item, id) =>{
-                return(
-                    <Slides item={item} key={id}/>
-                )
-            })
-        }
+            {
+              items.map((item, id) =>{
+                  return(
+                      <Slides item={item} key={id}/>
+                  )
+              })
+            }
           </Carousel>
       </div>
     )
