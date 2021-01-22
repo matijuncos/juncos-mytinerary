@@ -22,7 +22,6 @@ function Navbar() {
                         <p><FaPaperPlane className="icons"/> Cities</p>
                     </NavLink>
                 </div>
-                
             </div>
         </nav>
     )

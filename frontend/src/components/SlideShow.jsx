@@ -4,46 +4,46 @@ import Slides from './Slides'
 
 class SlideShow extends Component {
   state = {
-        items: [
-            [
-              {
-                title: 'Paris',
-                src: require('../assets/paris.jpg'),
-              },{
-                title: 'Rome',
-                src: require('../assets/rome.jpg'),
-              },{
-                title: 'Istanbul',
-                src: require('../assets/istanbul.jpg'),
-              },{
-                title: 'London',
-                src: require('../assets/london.jpg'),
-              }],[{
-                title: 'Sidney',
-                src: require('../assets/sidney.jpg'),
-              },{
-                title: 'Berlin',
-                src: require('../assets/berlin.jpg'),
-              },{
-                title: 'Toulouse',
-                src: require('../assets/toulouse.jpg'),
-              },{
-                title: 'San Sebastian',
-                src: require('../assets/sansebastian.jpg'),
-              }],[{
-                title: 'Barcelona',
-                src: require('../assets/barcelona.jpg'),
-              },{
-                title: 'Ibiza',
-                src: require('../assets/ibiza.jpg'),
-              },{
-                title: 'Milan',
-                src: require('../assets/milan.jpeg'),
-              },{
-                title: 'Bilbao',
-                src: require('../assets/bilbao.jpg'),
-              }]]
-        }
+    items: [
+        [
+          {
+            title: 'Paris',
+            src: '/assets/paris.jpg'
+          },{
+            title: 'Rome',
+            src: '/assets/rome.jpg'
+          },{
+            title: 'Istanbul',
+            src: '/assets/istanbul.jpg'
+          },{
+            title: 'London',
+            src: '/assets/london.jpg'
+          }],[{
+            title: 'Sidney',
+            src: '/assets/sidney.jpg'
+          },{
+            title: 'Berlin',
+            src: '/assets/berlin.jpg'
+          },{
+            title: 'Toulouse',
+            src: '/assets/toulouse.jpg'
+          },{
+            title: 'San Sebastian',
+            src: '/assets/sansebastian.jpg'
+          }],[{
+            title: 'Barcelona',
+            src: '/assets/barcelona.jpg'
+          },{
+            title: 'Ibiza',
+            src: '/assets/ibiza.jpg'
+          },{
+            title: 'Milan',
+            src: '/assets/milan.jpeg'
+          },{
+            title: 'Bilbao',
+            src: '/assets/bilbao.jpg'
+          }]]
+    }
   
   render () {
     const { items } = this.state;

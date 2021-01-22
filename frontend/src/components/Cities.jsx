@@ -7,7 +7,7 @@ import EachCity from './EachCity';
 
 
 const Cities = () => {
-
+    const [input, setInput] = useState('')
     const [cities, setcities] = useState([]);
     const [filteredCities, setFilteredCities] = useState([])   
     const [loading, setLoading]  = useState(true)
@@ -24,26 +24,42 @@ const Cities = () => {
     
     const handleCities = (e) =>{
         const value = e.target.value
-        const filteredData = cities.filter(city => city.cityName.toLowerCase().indexOf(value.toLowerCase().trim()) === 0 )
-       setFilteredCities(filteredData)
+        setInput(value)
     }
-
-        if(loading){
-            return <Loader/> 
+    
+    useEffect(()=>{
+        const filteredData = cities.filter(city => city.cityName.toLowerCase().indexOf(input.toLowerCase().trim()) === 0 )
+       setFilteredCities(filteredData)
+    }, [input, cities])
+    
+    if(loading){
+            return <Loader/>
         }else{
                 return (
                     <div className="bigContainer">
                             <img src={logo} alt=""/>
                             <h2>Take a look at these cities!</h2>
                             <input type="text" placeholder="Search here!" className="citiesInput" onChange={handleCities}/>
+                            {
+                                filteredCities.length === 0 && (
+                                    <>
+                                <div className="oops failedSearch">
+                                    <div className="text">
+                                        <h3>Oops!</h3>
+                                        <p>We don't have any city that matches your search!</p>
+                                        <p>Try another one!</p>
+                                    </div>
+                                </div>
+                                </>
+                                )
+                            }
                         <div className="citiesContainer">
-                            
                         {
                             filteredCities.map(city=>{
                                 return (
                                         <EachCity city={city} key={city._id}/>
                                     )
-                            })
+                                })
                         }
                         </div>
                         <Link to='/' className="linksBtn">

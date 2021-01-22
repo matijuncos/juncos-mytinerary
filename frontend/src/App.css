@@ -239,7 +239,7 @@ nav img {
 .eachCity {
   margin: 1.5vh;
   width: 40vw;
-  border-radius: 10px;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -288,15 +288,15 @@ nav img {
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
   transition: all ease 0.3s;
   padding: 3vh;
-  min-height: 80vh;
-  background-image: url("./assets/traveler.jpg");
+  min-height: 85vh;
+  background-image: url("./assets/trip2.jpg");
   background-size: cover;
 }
 .oops {
   margin: 2vh;
   width: 70vw;
   height: 40vh;
-  border-radius: 10px;
+  border-radius: 6px;
   display: flex;
   background-size: cover;
   background-position: 20% 50%;
@@ -307,9 +307,16 @@ nav img {
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
   margin: 0 auto;
 }
+.failedSearch {
+  background-image: url("../src/assets/doodle.jpg");
+  margin: 3vh 0 0 0;
+  width: 40vw;
+  height: 35vh;
+  min-width: 280px;
+}
 .oops .text {
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.801);
+  background-color: rgba(255, 255, 255, 0.884);
   color: black;
   padding: 3vh;
   width: 80%;
@@ -325,12 +332,12 @@ nav img {
   display: flex;
   align-items: center;
   padding: 2vh 3vh;
-  margin: 2vh;
+  margin: 2vh 2vh 2vh 2vh;
   border-radius: 6px;
   border: solid 1px white;
   cursor: pointer;
   color: rgb(255, 255, 255);
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.842);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.801);
   outline: none;
 }
@@ -356,14 +363,14 @@ nav img {
 .loader,
 .loader:before,
 .loader:after {
-  background: #000000;
+  background: #f8f8f8;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
 .loader {
-  color: #000000;
+  color: #f5f5f5;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;

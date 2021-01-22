@@ -4,7 +4,7 @@ import React from 'react'
 const Slide = ({foto}) => {
     return (
         <div className="slideCity" style={{                
-                                        backgroundImage: `url(${foto.src.default})`, 
+                                        backgroundImage: `url(${foto.src})`, 
                                         backgroundSize: "cover", 
                                         backgroundRepeat: "no-repeat",
                                         backgroundPosition: "50% 50%",
