@@ -15,9 +15,12 @@ const City = (props) => {
         .then(data => {
             setCity(data.results)
             setLoading(false)
+            console.log(window.location)
+            
         })
         .catch(error => {
             console.log(error)
+            window.location.pathname = '/cities'
         })
     },[id])
 
