@@ -21,6 +21,7 @@ const City = (props) => {
             window.location.pathname = '/cities'
             console.log(error)
         })
+        window.scrollTo(0, 0)    
     },[id])
 
     if(loading) return <Loader/>

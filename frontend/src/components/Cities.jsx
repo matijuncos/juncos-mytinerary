@@ -20,6 +20,7 @@ const Cities = () => {
             setLoading(false)
         })
         .catch(error => {console.log(error)})
+        window.scrollTo(0, 0)    
     }, []);
     
     const handleCities = (e) =>{
