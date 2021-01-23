@@ -32,10 +32,9 @@ const Cities = () => {
        setFilteredCities(filteredData)
     }, [input, cities])
     
-    if(loading){
-            return <Loader/>
-        }else{
-                return (
+    if(loading)return <Loader/>
+                
+        return (
                     <div className="bigContainer">
                             <img src={logo} alt=""/>
                             <h2>Take a look at these cities!</h2>
@@ -68,7 +67,7 @@ const Cities = () => {
                     </div>
                 )
             
-    }
+    
 }
 
 export default Cities

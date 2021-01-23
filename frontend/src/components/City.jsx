@@ -15,18 +15,15 @@ const City = (props) => {
         .then(data => {
             setCity(data.results)
             setLoading(false)
-            console.log(window.location)
             
         })
         .catch(error => {
-            console.log(error)
             window.location.pathname = '/cities'
+            console.log(error)
         })
     },[id])
 
-    if(loading){
-        return <Loader/>
-    }else{
+    if(loading) return <Loader/>
         return (
                 <div className="centrar">
                     <div className="insideEachCity" >
@@ -42,7 +39,7 @@ const City = (props) => {
                     </div> 
                 </div>
         )
-    }
+    
 }
 
 export default City
