@@ -5,8 +5,8 @@ const citiesController = {
     addCity: (req, res) =>{
         const {cityName, cityPicture} = req.body
         const newCity = new City({
-            cityName: cityName,
-            cityPicture: cityPicture
+            cityName,
+            cityPicture
         })
         newCity.save()
         .then(newCity =>{
@@ -18,7 +18,7 @@ const citiesController = {
         .catch(error => {
             return res.json({
                 success: false, 
-                error: error
+                error
             })
         })
     },
@@ -32,7 +32,7 @@ const citiesController = {
         .catch(error =>{
             return res.json({
                 success: false, 
-                error: error
+                error
             })
         })
     },
@@ -47,7 +47,7 @@ const citiesController = {
          .catch(error =>{
             return res.json({
                 success: false, 
-                error: error
+                error
             })
         })
     } 

@@ -279,7 +279,15 @@ nav img {
   border-radius: 3px;
   outline: none;
 }
-
+.centrar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80vh;
+  padding: 2vw;
+  background-color: rgb(94, 92, 94)
+}
 .insideEachCity {
   display: flex;
   justify-content: space-evenly;
@@ -289,8 +297,6 @@ nav img {
   transition: all ease 0.3s;
   padding: 3vh;
   min-height: 85vh;
-  background-image: url("./assets/trip2.jpg");
-  background-size: cover;
 }
 .oops {
   margin: 2vh;
@@ -307,6 +313,191 @@ nav img {
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
   margin: 0 auto;
 }
+.itineraryBanner{
+  width: 70vw;
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
+  justify-content: center;
+}
+.itineraryBanner h2{
+  width: 100%;
+  text-align: center;
+  background-color: rgba(16, 15, 16, 0.836);
+}
+
+.itinerary{
+  margin: 3vh!important;
+  padding:  3vh 0;
+  width: 60vw;
+  min-height: 40vh;
+  border-radius: 6px;
+  display: flex;
+  background-size: cover;
+  background-position: 20% 50%;
+  flex-direction: column;
+  color: rgb(16, 15, 16);
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.884);
+  text-align: center;
+  transition: all ease 0.3s;
+}
+.itinerary h2{
+  background-color: rgb(31, 29, 31);
+  color: white;
+  margin-bottom: 1vh;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+.price{
+  display: flex;
+  align-items: center;
+}
+
+.viewMoreBtn{
+  background-color: transparent;
+  color: black;
+  border: solid black 1px;
+  border-radius: 6px;
+  padding: 1.2vh 3vh;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+.viewMoreBtn:hover{
+  background-color: rgb(34, 33, 33);
+  color: rgb(255, 255, 255);
+  border: solid rgb(255, 255, 255) 1px;
+
+}
+.activities{
+  margin-top: 2vh;
+  width: 90%;
+  text-align: center;
+  padding: 3vh 0;
+  border: solid 1px black;
+  border-radius: 10px;
+}
+.activities h3{
+  background-color: rgba(0, 0, 0, 0.808);
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 1vh;
+}
+.activity{
+  display: flex;
+  justify-content: center;
+
+}
+.activityImg{
+  background-size: cover;
+  width: 24vh;
+  height: 14vh;
+  margin: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activityImg p{
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.829);
+  color: white;
+  font-size: .8rem;
+  text-align: center;
+}
+.userPic{
+  background-position: center;
+  background-size: cover;
+  width: 5vw;
+  height: 5vw;
+  border-radius: 100%;
+}
+
+.itInfo p{
+  margin:  0 2vh;
+  font-size: .8rem;
+}
+.itInfo{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1vh;
+}
+.likes{
+  display: flex;
+  align-items: center;
+}
+.likesSpan{
+  font-size: .7rem;
+}
+.heart{
+  color: rgb(185, 12, 12);
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+}
+
+.comments{
+  margin-top:1vh ;
+  border: solid black 1px;
+  width: 90%;
+  padding:  3vh 0 2vh 0;
+  border-radius: 10px;
+}
+
+.comments h3{
+  width: 100%;
+  background-color: rgba(16, 15, 16, 0.863);
+  color: white;
+  padding: 1vh;
+
+}
+.comment{
+  background-color: rgb(196, 187, 187);
+  margin: 1vh;
+  width: fit-content;
+  text-align: left;
+  padding: 1vh 2vh;
+  border-radius: 5px 18px 18px 18px;
+  font-size: .9rem;
+}
+.comment .user{
+  font-weight: 600;
+}
+.comment .content{
+  margin-left: 3vh;
+}
+.inputDiv{
+  position: relative;
+}
+.commentInput{
+  width: 98%;
+  padding: 1vh .5vh;
+  border-radius: 8px;
+  margin-top: 1vh ;
+  outline: none;
+}
+.commentIcon{
+  position: absolute;
+  top: 12px;
+  right: .8rem;
+  font-size: 1.7rem;
+  color: rgb(69, 69, 76);
+  cursor: pointer;
+}
+
 .failedSearch {
   background-image: url("../src/assets/doodle.jpg");
   margin: 3vh 0 0 0;
@@ -395,6 +586,10 @@ nav img {
 .loader:after {
   left: 1.5em;
 }
+.cash{
+  color: rgb(9, 83, 9);
+  margin: 0 3px;
+}
 @-webkit-keyframes load1 {
   0%,
   80%,
@@ -418,6 +613,19 @@ nav img {
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+
+.hashtags{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  
+  font-size: .8rem;
+  color: blue;
+}
+
+.hashtag{
+  margin: 1vh;
 }
 @media (max-width: 600px) {
   #root {
