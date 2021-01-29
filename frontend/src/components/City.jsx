@@ -2,21 +2,24 @@ import React, { useState, useEffect } from 'react'
 import NoItineraries from './NoItineraries'
 import { Link } from 'react-router-dom'
 import { FaHome, FaPaperPlane } from "react-icons/fa";
-import Loader from './Loader';
 import Itinerary from './Itinerary';
 import { connect } from 'react-redux'
 import itinerariesActions from '../Redux/actions/itinerariesActions';
+import Loader from './Loader';
 
 const City = (props) => {
     const [city, setCity] = useState({})
     const id = props.match.params.id
+
     useEffect(() => {
         const cities = props.cities.filter(city => city._id === id)
         setCity(cities[0])
         props.getItineraries(id)
+        window.scrollTo(0, 0)
     }, [])
 
     if (props.itineraries.length === 0) return <NoItineraries cityName={city.cityName} cityPicture={city.cityPicture} />
+    if (!city.cityName) return <Loader />
     return (
         <>
             <div className="centrar">

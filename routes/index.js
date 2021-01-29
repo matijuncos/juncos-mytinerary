@@ -15,7 +15,10 @@ router.route('/itineraries')
 .get(itinerariesController.getItinearies)
 .post(itinerariesController.addItinerarie)
 
- router.route('/itinerary/:cityid')
+router.route('itinerary/:_id')
+.put(itinerariesController.updateItinerary)
+
+ router.route('/itineraries/:cityid')
 .get(itinerariesController.getItinerariesbyCityId)
 
 

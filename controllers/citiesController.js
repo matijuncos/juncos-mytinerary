@@ -1,6 +1,5 @@
 const City = require('../models/City')
 
-
 const citiesController = {
     addCity: (req, res) =>{
         const {cityName, cityPicture} = req.body

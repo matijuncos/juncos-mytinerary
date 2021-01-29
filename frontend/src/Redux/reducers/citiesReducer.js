@@ -17,7 +17,7 @@ const citiesReducer = (state = initState, action) =>{
         return{
           ...state,
           inputValue: action.payload,
-          filteredCities: state.cities.filter(city => city.cityName.toLowerCase().indexOf(action.payload.toLowerCase()) === 0)
+          filteredCities: state.cities.filter(city => city.cityName.toLowerCase().indexOf(action.payload.toLowerCase().trim()) === 0)
         }  
       break  
 

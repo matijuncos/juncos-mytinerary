@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../assets/logov9.png'
 import { FaHome } from "react-icons/fa";
@@ -6,15 +6,12 @@ import Loader from './Loader';
 import EachCity from './EachCity';
 import citiesActions from '../Redux/actions/citiesActions'
 import { connect } from 'react-redux'
-import citiesAction from '../Redux/actions/citiesActions';
 
 
 const Cities = (props) => {
-    //const [input, setInput] = useState('')
     useEffect(() => {
         props.getCities()
         window.scrollTo(0, 0)
-
     }, []);
 
 
@@ -22,9 +19,7 @@ const Cities = (props) => {
     const handleCities = (e) => {
         const inputValue = e.target.value
         props.getFilteredCities(inputValue)
-
     }
-
 
     if (props.cities.length === 0) {
         return <Loader />

@@ -6,9 +6,8 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import Activity from './Activity';
 import Loader from './Loader';
 
-
 const Itinerary = ({ itinerary }) => {
-  const { cityId, userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities } = itinerary
+  const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities } = itinerary
   const [visible, setVisible] = useState(false)
 
   const handleVisible = () => {
@@ -26,13 +25,8 @@ const Itinerary = ({ itinerary }) => {
           <p>Duration: {duration} hours</p>
           <p className="likes">Likes:<IoIosHeartEmpty className="heart" /> <span className="likesSpan">{likes}</span></p>
         </div>
-
         <div className="hashtags">
-          {hastags.map(hashtag => {
-            return (
-              <p className="hashtag">#{hashtag}</p>
-            )
-          })}
+          {hastags.map(hashtag => <p className="hashtag">#{hashtag}</p>)}
         </div>
         <button onClick={handleVisible} className="viewMoreBtn">{visible ? 'View Less' : 'View More'}</button>
         {visible && (
@@ -40,18 +34,12 @@ const Itinerary = ({ itinerary }) => {
             <div className="activities">
               <h3>Activities</h3>
               <div className="activity">
-                {activities.map(activity => {
-                  return (
-                    <Activity activity={activity} />
-                  )
-                })}
+                {activities.map(activity => <Activity activity={activity} />)}
               </div>
             </div>
             <div className="comments">
               <h3>Comments</h3>
-              {comments.map(comment => {
-                return <Comment comment={comment} />
-              })}
+              {comments.map(comment => <Comment comment={comment} />)}
               <div className="inputDiv">
                 <input type="text" placeholder='You must be logged to leave a comment' disabled className="commentInput" />
                 <MdSend className="commentIcon" />
