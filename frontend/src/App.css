@@ -283,10 +283,14 @@ nav img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 80vh;
   padding: 2vw;
-  background-color: rgb(94, 92, 94)
+  background-image: url('./assets/Curve2.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(94, 92, 94);
+  background-attachment: fixed;
 }
 .insideEachCity {
   display: flex;
@@ -325,10 +329,16 @@ nav img {
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
   justify-content: center;
 }
-.itineraryBanner h2{
+
+.bannerText{
   width: 100%;
+  padding: 1.5vh 0;
   text-align: center;
   background-color: rgba(16, 15, 16, 0.836);
+  letter-spacing: 1px;
+}
+.itineraryBanner h2{
+margin-bottom: 1vh;
 }
 
 .itinerary{
@@ -364,32 +374,41 @@ nav img {
 }
 
 .viewMoreBtn{
-  background-color: transparent;
+  margin-top: 1.5vh;
+  background-color: rgb(228,228,228);
   color: black;
   border: solid black 1px;
   border-radius: 6px;
   padding: 1.2vh 3vh;
   font-family: "Poppins", sans-serif;
+  font-weight: 600;
   cursor: pointer;
   transition: all ease 0.2s;
+  outline: none;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.432);
+
 }
 .viewMoreBtn:hover{
-  background-color: rgb(34, 33, 33);
+  background-color: rgba(0, 0, 0, 0.836);
   color: rgb(255, 255, 255);
   border: solid rgb(255, 255, 255) 1px;
 
 }
 .activities{
-  margin-top: 2vh;
+  margin: 2vh;
   width: 90%;
   text-align: center;
   padding: 3vh 0;
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap !important;
+  box-shadow: 8px 8px 40px rgba(0, 0, 0, 0.432);
+  background-color: rgb(228,228,228);
+
+
 
 }
 .activities h3{
@@ -409,10 +428,10 @@ nav img {
   background-size: cover;
   min-width: 150px;
   width: 24vh;
-  height: 14vh;
+  height: 20vh;
   margin: 3vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.432);
   border-radius: 4px;
@@ -425,6 +444,7 @@ nav img {
   color: white;
   font-size: .8rem;
   padding: 1vh;
+  border-radius: 4px 4px 0 0;
   
 }
 .userPic{
@@ -450,7 +470,7 @@ nav img {
   align-items: center;
 }
 .likesSpan{
-  font-size: .7rem;
+  font-size: .9rem;
 }
 .heart{
   color: rgb(185, 12, 12);
@@ -461,11 +481,15 @@ nav img {
 }
 
 .comments{
-  margin-top:1vh ;
-  border: solid black 1px;
+  margin:1vh ;
+ /*border: solid black 1px;*/
   width: 90%;
   padding:  3vh 0 2vh 0;
   border-radius: 10px;
+  box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.432);
+  background-color: rgb(228,228,228);
+
+
 }
 
 .comments h3{
@@ -473,16 +497,17 @@ nav img {
   background-color: rgba(16, 15, 16, 0.863);
   color: white;
   padding: 1vh;
-
+  
 }
 .comment{
-  background-color: rgb(196, 187, 187);
+  background-color: rgb(210, 224, 224);
   margin: 1vh;
   width: fit-content;
   text-align: left;
   padding: 1vh 2vh;
   border-radius: 5px 18px 18px 18px;
   font-size: .9rem;
+  box-shadow: 5px 5px 28px rgba(0, 0, 0, 0.432);
 }
 .comment .user{
   font-weight: 600;
@@ -600,6 +625,7 @@ nav img {
 .cash{
   color: rgb(9, 83, 9);
   margin: 0 3px;
+  font-size: 1.2rem;
 }
 @-webkit-keyframes load1 {
   0%,

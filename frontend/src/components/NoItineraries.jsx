@@ -1,6 +1,7 @@
 import React from 'react'
 
-const NoItineraries = ({ cityName, cityPicture }) => {
+const NoItineraries = ({ city }) => {
+    const { cityName, cityPicture } = city
     return (
         <div className="centrar">
             <div className="oops" style={{ backgroundImage: `url(${cityPicture})` }}>

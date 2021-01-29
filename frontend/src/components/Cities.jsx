@@ -7,14 +7,11 @@ import EachCity from './EachCity';
 import citiesActions from '../Redux/actions/citiesActions'
 import { connect } from 'react-redux'
 
-
 const Cities = (props) => {
     useEffect(() => {
         props.getCities()
         window.scrollTo(0, 0)
     }, []);
-
-
 
     const handleCities = (e) => {
         const inputValue = e.target.value

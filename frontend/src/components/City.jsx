@@ -18,19 +18,21 @@ const City = (props) => {
         window.scrollTo(0, 0)
     }, [])
 
-    if (props.itineraries.length === 0) return <NoItineraries cityName={city.cityName} cityPicture={city.cityPicture} />
-    if (!city.cityName) return <Loader />
+    if (!city._id) return <Loader />
+    if (props.itineraries.length === 0) return <NoItineraries city={city} />
     return (
         <>
             <div className="centrar">
                 <div className="itineraryBanner" style={{ backgroundImage: `url(${city.cityPicture})` }}>
-                    <h2>Welcome to {city.cityName}!</h2>
+                    <div className="bannerText">
+                        <h2>Welcome to {city.cityName}!</h2>
+                        <p>Feel free to check our itineraries and activities!</p>
+
+                    </div>
                 </div>
 
                 <div className="insideEachCitie" >
-                    {props.itineraries.map(itinerary => {
-                        return <Itinerary itinerary={itinerary} />
-                    })}
+                    {props.itineraries.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id} />)}
                 </div>
                 <div className="buttons">
                     <Link to='/cities' className="linksBtn">
