@@ -44,7 +44,6 @@ const itinerariesController = {
    },
    updateItinerary: (req, res) =>{
     const id = req.params.itId
-    console.log(id)
      Itinerary.findByIdAndUpdate(id, req.body)
      .then( updatedItinerary =>{
        return res.json({
@@ -59,7 +58,6 @@ const itinerariesController = {
        })
     })
    }
-
 }
 
 module.exports = itinerariesController

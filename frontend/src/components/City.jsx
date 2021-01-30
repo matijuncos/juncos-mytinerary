@@ -5,36 +5,40 @@ import { FaHome, FaPaperPlane } from "react-icons/fa";
 import Itinerary from './Itinerary';
 import { connect } from 'react-redux'
 import itinerariesActions from '../Redux/actions/itinerariesActions';
-import Loader from './Loader';
+//import Loader from './Loader';
 
 const City = (props) => {
-    const [city, setCity] = useState({})
+
+    const { cities, itineraries, getItineraries } = props
+    const [actualCity, setactualCity] = useState({})
     const id = props.match.params.id
+
     useEffect(() => {
-        const city = props.cities.filter(city => city._id === id)
-        setCity(city[0])
-        props.getItineraries(id)
+        const city = cities.filter(city => city._id === id)
+        setactualCity(city[0])
+        getItineraries(id)
         window.scrollTo(0, 0)
         if (city.length === 0) {
             props.history.push('/cities')
         }
-    }, [])
+    }, [cities, id, getItineraries, props.history])
 
-    console.log(props.cities)
-    if (props.itineraries.length === 0) return <NoItineraries city={city} />
+    if (itineraries.length === 0) {
+        return <NoItineraries city={actualCity} />
+    }
+
     return (
         <>
             <div className="centrar">
-                <div className="itineraryBanner" style={{ backgroundImage: `url(${city.cityPicture})` }}>
+                <div className="itineraryBanner" style={{ backgroundImage: `url(${actualCity.cityPicture})` }}>
                     <div className="bannerText">
-                        <h2>Welcome to {city.cityName}!</h2>
+                        <h2>Welcome to {actualCity.cityName}!</h2>
                         <p>Feel free to check our itineraries and activities!</p>
-
                     </div>
                 </div>
 
                 <div className="insideEachCitie" >
-                    {props.itineraries.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id} />)}
+                    {itineraries.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id} />)}
                 </div>
                 <div className="buttons">
                     <Link to='/cities' className="linksBtn">
@@ -53,11 +57,11 @@ const City = (props) => {
 const mapStateToProps = (state) => {
     return {
         cities: state.citiesR.cities,
-        itineraries: state.itinerariesR.itineraries
+        itineraries: state.itinerariesR.itineraries,
     }
 }
 const mapDispatchToProps = {
-    getItineraries: itinerariesActions.getItineraries
+    getItineraries: itinerariesActions.getItineraries,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(City)

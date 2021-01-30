@@ -8,14 +8,16 @@ import citiesActions from '../Redux/actions/citiesActions'
 import { connect } from 'react-redux'
 
 const Cities = (props) => {
+    const { getCities, getFilteredCities, filteredCities } = props
+
     useEffect(() => {
-        props.getCities()
+        getCities()
         window.scrollTo(0, 0)
-    }, []);
+    }, [getCities]);
 
     const handleCities = (e) => {
         const inputValue = e.target.value
-        props.getFilteredCities(inputValue)
+        getFilteredCities(inputValue)
     }
 
     if (props.cities.length === 0) {
@@ -27,7 +29,7 @@ const Cities = (props) => {
             <h2>Take a look at these cities!</h2>
             <input type="text" placeholder="Search here!" className="citiesInput" onChange={handleCities} />
             {
-                props.filteredCities.length === 0 && (
+                filteredCities.length === 0 && (
                     <>
                         <div className="oops failedSearch">
                             <div className="text">
@@ -41,7 +43,7 @@ const Cities = (props) => {
             }
             <div className="citiesContainer">
                 {
-                    props.filteredCities.map(city => {
+                    filteredCities.map(city => {
                         return (
                             <EachCity city={city} key={city._id} />
                         )

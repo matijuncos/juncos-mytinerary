@@ -394,48 +394,47 @@ margin-bottom: 1vh;
   border: solid rgb(255, 255, 255) 1px;
 
 }
-.activities{
+.activitiesContainer{
+  background-color: rgb(228,228,228);
+  box-shadow: 8px 8px 40px rgba(0, 0, 0, 0.432);
+  border-radius: 10px;
   margin: 2vh;
   width: 90%;
-  text-align: center;
-  padding: 3vh 0;
-  /*border: solid 1px black;*/
-  border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap !important;
-  box-shadow: 8px 8px 40px rgba(0, 0, 0, 0.432);
-  background-color: rgb(228,228,228);
-
-
-
+    
 }
-.activities h3{
+.activitiesContainer h3{
   background-color: rgba(0, 0, 0, 0.808);
   color: white;
-  text-align: center;
   width: 100%;
   padding: 1vh;
+  border-radius: 8px 8px 0 0;
 }
-.activity{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
+.activities{
+  max-width: 100%;
+  align-items: center;
+  padding: 2vh ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
 }
+
+
 .activityImg{
   background-size: cover;
-  min-width: 150px;
-  width: 24vh;
+  min-width: 15rem;
+  width: 30vh; 
   height: 20vh;
-  margin: 3vh 3vh 0 3vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.432);
   border-radius: 4px;
-
+  margin: 1vh;
 }
 
 .activityImg p{
@@ -480,19 +479,26 @@ margin-bottom: 1vh;
 
 }
 
-.comments{
-  margin:1vh ;
- /*border: solid black 1px;*/
+.commentContainer{
+  display: flex;
+  flex-direction: column;
   width: 90%;
-  padding:  3vh 0 2vh 0;
   border-radius: 10px;
   box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.432);
+  padding-bottom: 2vh;
   background-color: rgb(228,228,228);
-
-
 }
 
-.comments h3{
+
+.comments{
+  margin:1vh ;
+  padding:  1vh 0 2vh 0;
+  overflow-x: auto;
+  max-height: 24vh ;
+}
+
+.commentContainer h3{
+  border-radius: 10px 10px 0 0;
   width: 100%;
   background-color: rgba(16, 15, 16, 0.863);
   color: white;
