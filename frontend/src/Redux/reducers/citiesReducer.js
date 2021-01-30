@@ -1,7 +1,6 @@
 const initState = {
   cities: [],
   filteredCities: [],
-
 }
 
 const citiesReducer = (state = initState, action) =>{

@@ -43,19 +43,20 @@ const itinerariesController = {
       .catch(error => res.json({succes:false, error}))
    },
    updateItinerary: (req, res) =>{
-    const id = req.params._id
-    Itinerary.findByIdAndUpdate(id, req.body)
-    .then( updatedItinerary =>{
-      return res.json({
-        succes: true,
-        results: updatedItinerary
-      })
-    })
-    .catch(error =>{
-      return res.json({
-        success: false,
-        error
-      })
+    const id = req.params.itId
+    console.log(id)
+     Itinerary.findByIdAndUpdate(id, req.body)
+     .then( updatedItinerary =>{
+       return res.json({
+         succes: true,
+         results: updatedItinerary
+       })
+     })
+     .catch(error =>{
+       return res.json({
+         success: false,
+         error
+       })
     })
    }
 

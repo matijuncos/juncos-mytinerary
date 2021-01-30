@@ -429,7 +429,7 @@ margin-bottom: 1vh;
   min-width: 150px;
   width: 24vh;
   height: 20vh;
-  margin: 3vh;
+  margin: 3vh 3vh 0 3vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;

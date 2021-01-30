@@ -5,7 +5,6 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdSend } from "react-icons/md";
 import Activity from './Activity';
-import Loader from './Loader';
 
 const Itinerary = ({ itinerary }) => {
   const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities } = itinerary
@@ -14,7 +13,7 @@ const Itinerary = ({ itinerary }) => {
   const handleVisible = () => {
     setVisible(!visible)
   }
-  if (!userName) return <Loader />
+
   return (
     <>
       <div className="itinerary">
@@ -27,7 +26,11 @@ const Itinerary = ({ itinerary }) => {
           <p className="likes">{likes === 0 ? <IoIosHeartEmpty className="heart" /> : <IoIosHeart className="heart" />} <span className="likesSpan">{likes}</span></p>
         </div>
         <div className="hashtags">
-          {hastags.map(hashtag => <p className="hashtag" key={hashtag}>#{hashtag}</p>)}
+          {hastags.map(hashtag => {
+            return (
+              <p key={hashtag} className="hashtag">#{hashtag}</p>
+            )
+          })}
         </div>
         {visible && (
           <>
@@ -40,7 +43,7 @@ const Itinerary = ({ itinerary }) => {
               <h3>Comments</h3>
               {comments.map(comment => <Comment comment={comment} key={comment._id} />)}
               <div className="inputDiv">
-                <input type="text" placeholder='You must be logged in to leave a comment' disabled className="commentInput" />
+                <input type="text" name="content" placeholder='You must be logged in to leave a comment' disabled className="commentInput" />
                 <MdSend className="commentIcon" />
               </div>
             </div>

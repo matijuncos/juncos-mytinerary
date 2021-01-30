@@ -10,15 +10,17 @@ import Loader from './Loader';
 const City = (props) => {
     const [city, setCity] = useState({})
     const id = props.match.params.id
-
     useEffect(() => {
-        const cities = props.cities.filter(city => city._id === id)
-        setCity(cities[0])
+        const city = props.cities.filter(city => city._id === id)
+        setCity(city[0])
         props.getItineraries(id)
         window.scrollTo(0, 0)
+        if (city.length === 0) {
+            props.history.push('/cities')
+        }
     }, [])
 
-    if (!city._id) return <Loader />
+    console.log(props.cities)
     if (props.itineraries.length === 0) return <NoItineraries city={city} />
     return (
         <>
@@ -46,7 +48,6 @@ const City = (props) => {
         </>
     )
 }
-
 
 
 const mapStateToProps = (state) => {
