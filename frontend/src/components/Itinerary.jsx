@@ -43,7 +43,7 @@ const Itinerary = ({ itinerary }) => {
                 {comments.map(comment => <Comment comment={comment} key={comment._id} />)}
               </div>
               <div className="inputDiv">
-                <input type="text" name="content" placeholder='You must be logged in to leave a comment' disabled className="commentInput" />
+                <input type="text" name="content" placeholder='You must be logged in to comment' disabled className="commentInput" />
                 <MdSend className="commentIcon" />
               </div>
             </div>

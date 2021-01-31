@@ -420,10 +420,8 @@ margin-bottom: 1vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  
+
 }
-
-
 .activityImg{
   background-size: cover;
   min-width: 15rem;
@@ -461,6 +459,7 @@ margin-bottom: 1vh;
 .itInfo{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
   margin: 1vh;
 }
@@ -496,7 +495,21 @@ margin-bottom: 1vh;
   overflow-x: auto;
   max-height: 24vh ;
 }
+.comments::-webkit-scrollbar{
+  width: 10px;
+}
+.comments::-webkit-scrollbar-track{
+  background: #f1f1f1;  
+  border-radius: 5px;
+}
+.comments::-webkit-scrollbar-thumb{
+  background: rgb(150, 190, 190);
+  border-radius: 5px;
+}
 
+.comments::-webkit-scrollbar-thumb:hover {
+  background: rgb(78, 114, 119);
+}
 .commentContainer h3{
   border-radius: 10px 10px 0 0;
   width: 100%;
@@ -662,9 +675,9 @@ margin-bottom: 1vh;
   width: 50%;
   display: flex;
   justify-content: center;
-  
   font-size: .8rem;
   color: blue;
+  flex-wrap: wrap;
 }
 
 .hashtag{
@@ -737,4 +750,12 @@ margin-bottom: 1vh;
   .footer {
     padding: 2vh;
   }
+.insideEachCitie {
+  width: 100%!important;
+  flex-direction: column;
+  align-items: center;
+}
+.itinerary{
+  width: 90%;
+}
 }

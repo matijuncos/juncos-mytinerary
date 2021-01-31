@@ -9,16 +9,9 @@ const itinerariesReducer = (state = initState, action) =>{
       return{
         ...state,
         itineraries: action.payload,
-        
       }
-    case "SET_LOADING":
-      return{
-        ...state,
-        loading: action.payload
-      }
-
     default: return  state
   }
 }
-
 export default itinerariesReducer
+

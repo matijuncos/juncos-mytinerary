@@ -8,7 +8,6 @@ import itinerariesActions from '../Redux/actions/itinerariesActions';
 //import Loader from './Loader';
 
 const City = (props) => {
-
     const { cities, itineraries, getItineraries } = props
     const [actualCity, setactualCity] = useState({})
     const id = props.match.params.id
@@ -21,12 +20,12 @@ const City = (props) => {
         if (city.length === 0) {
             props.history.push('/cities')
         }
+
     }, [cities, id, getItineraries, props.history])
 
     if (itineraries.length === 0) {
         return <NoItineraries city={actualCity} />
     }
-
     return (
         <>
             <div className="centrar">
@@ -62,6 +61,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = {
     getItineraries: itinerariesActions.getItineraries,
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(City)
