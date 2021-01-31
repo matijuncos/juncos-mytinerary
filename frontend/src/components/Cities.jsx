@@ -63,7 +63,6 @@ const mapStateToProps = (state) => {
     return {
         cities: state.citiesR.cities,
         filteredCities: state.citiesR.filteredCities,
-        inputValue: state.citiesR.inputValue,
     }
 }
 const mapDispatchToProps = {

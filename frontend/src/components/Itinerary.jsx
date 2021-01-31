@@ -5,6 +5,9 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdSend } from "react-icons/md";
 import Activity from './Activity';
+import { FcClock } from "react-icons/fc";
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 const Itinerary = ({ itinerary }) => {
@@ -20,10 +23,10 @@ const Itinerary = ({ itinerary }) => {
       <div className="itinerary">
         <h2>{itineraryTitle}!</h2>
         <div className="userPic" style={{ backgroundImage: `url(${userPic})` }}></div>
-        <p>{userName}</p>
+        <p className="userName">{userName}</p>
         <div className="itInfo">
-          <p className="price">Price:{[...Array(price)].map((money, idx) => <FaRegMoneyBillAlt className="cash" key={idx} />)}</p>
-          <p>Duration: {duration} hours</p>
+          <p className="price"><span className="bold">Price:</span>{[...Array(price)].map((money, idx) => <FaRegMoneyBillAlt className="cash" key={idx} />)}</p>
+          <p className="hours"><span className="bold">Duration:</span> {[...Array(duration)].map(clocks => <FcClock className="clock" key={uuidv4()} />)} </p>
           <p className="likes">{likes === 0 ? <IoIosHeartEmpty className="heart" /> : <IoIosHeart className="heart" />} <span className="likesSpan">{likes}</span></p>
         </div>
         <div className="hashtags">
