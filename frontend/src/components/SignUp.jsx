@@ -11,7 +11,14 @@ import { useAlert } from 'react-alert'
 const SignUp = (props) => {
   const alert = useAlert()
   const { signUp } = props
-  const [newUser, setNewUser] = useState({})
+  const [newUser, setNewUser] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    userPicture: '',
+    country: ''
+  })
   const [countryList, setCountryList] = useState([])
   const [errors, setErrors] = useState({})
 
@@ -42,7 +49,10 @@ const SignUp = (props) => {
   }
 
   const handleClick = async () => {
-
+    if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.userPicture === '' || newUser.country === '') {
+      alert.error("Please complete the form to sign up!")
+      return false
+    }
     const res = await signUp(newUser)
     if (res && !res.success) {
       res.errors.details.map(error => {

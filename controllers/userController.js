@@ -53,12 +53,17 @@ const userController = {
       })
     },
     preserveLog: (req, res) => {
+     console.log(req.user) //veo si llega el user y que datos trae.
       res.json({
         success: true, 
         response: {
           token: req.body.token, 
-          firstName: req.user.firstName}})
-  }
+          firstName: req.user.firstName,
+          lastName: req.user.lastName,
+          userPicture: req.user.userPicture
+          
+        }})
+     }
   }
   
   module.exports = userController

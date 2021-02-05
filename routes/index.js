@@ -16,22 +16,22 @@ router.route('/cities')
  
 router.route('/itineraries')
 .get(itinerariesController.getItinearies)
-.post(passport.authenticate('jwt', {session:false}), itinerariesController.addItinerarie)
-//la ruta protegida recibe al autor en req.body
+.post(itinerariesController.addItinerarie)
 
 router.route('/itinerary/:itId')
 .put(itinerariesController.updateItinerary)
 
- router.route('/itineraries/:cityid')
+router.route('/itineraries/:cityid')
 .get(itinerariesController.getItinerariesbyCityId)
 
 router.route('/user/signup')
-.post(validator.joiValidate, userController.signUp)
+.post(validator.joiValidate, userController.signUp) //validator para el signup de JOI
 
 router.route('/user/signin')
 .post(userController.signIn)
 
 router.route('/user/storage')
 .post(passport.authenticate('jwt', {session:false}), userController.preserveLog)
+//la ruta protegida recibe al usuario en req.body
 
 module.exports = router

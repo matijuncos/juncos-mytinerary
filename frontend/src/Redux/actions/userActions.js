@@ -36,16 +36,25 @@ const userActions = {
   },
   preserveLog: (token) =>{
     return async (dispatch, getState) =>{
-      const response = await axios.post('http://localhost:4000/api/user/storage', {token}, {
-        headers:{
-          Authorization: 'Bearer ' + token
-        }
-      })
+try{
+    const response = await axios.post('http://localhost:4000/api/user/storage', {token}, {
+      headers:{
+        Authorization: 'Bearer ' + token
+      }
+    })
+    console.log(response)
 
-     dispatch({
-       type: "USER_LOG",
-       payload: {response: {...response.data.response}}
-     })
+   dispatch({
+     type: "USER_LOG",
+     payload: {response: {...response.data.response}}
+   })
+
+}catch(error){
+    if(error.response.status === 401){
+      localStorage.clear()
+      return false
+    }
+}
     }
   }
   

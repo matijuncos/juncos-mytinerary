@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import './App.css';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
@@ -11,31 +12,46 @@ import { connect } from 'react-redux';
 import userActions from './Redux/actions/userActions';
 
 function App(props) {
+
+  const[refresh, setRefresh] = useState()
+
   console.log(props)
-  if(!props.loggedUser){
+  if(props.loggedUser){
     var links = 
     <>
-      <Route exact path="/" component={Main} />
-      <Route path='/signin' component={SignIn}/>
-      <Route path='/signup' component={SignUp}/>
-      <Route  path="/cities" component={Cities} />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route  path="/cities" component={Cities} />
+          <Route  path='/itineraries/:id' component={City} />
+          <Redirect to='/'/>
+        </Switch>
     </>
+  }else if(localStorage.getItem('token')){
+    props.preserveLog(localStorage.getItem('token'))
+    .then(res =>{
+      if (!res){
+        setRefresh(!refresh)
+      }
+    })
+
   }else{
     links= 
     <>
-        <Route exact path="/" component={Main} />
-        <Route  path="/cities" component={Cities} />
-        <Route  path='/itineraries/:id' component={City} />
-        <Redirect to='/'/>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path='/signin' component={SignIn}/>
+          <Route path='/signup' component={SignUp}/>
+          <Route  path="/cities" component={Cities} />
+          <Redirect to='/'/>
+        </Switch>
+      
     </>
   }
   return (
   <>
     <Router>
       <Navbar/>
-        <Switch>
           {links}
-        </Switch>  
     </Router>
     <Footer/>
   </>
