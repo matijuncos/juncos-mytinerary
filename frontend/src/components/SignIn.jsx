@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GiWorld } from "react-icons/gi";
-import Google from '../assets/google.png'
+import { GoogleLogin } from 'react-google-login';
 import { connect } from 'react-redux'
 import userActions from '../Redux/actions/userActions';
+import { useAlert } from 'react-alert'
 
 const SignIn = (props) => {
+  const alert = useAlert();
 
-  const [logUser, setLogUser] = useState({})
+  const [logUser, setLogUser] = useState({
+    email: '',
+    password: ''
+  })
   const [errorMessage, setErrorMessage] = useState('')
 
   const handleInput = (e) => {
@@ -21,29 +26,50 @@ const SignIn = (props) => {
 
   const handleClick = async () => {
     setErrorMessage('')
+    if (logUser.email === '' || logUser.password === '') {
+      setErrorMessage('No fields should be empty')
+      return false
+    }
     var response = await props.signIn(logUser)
     if (response && !response.success) {
       setErrorMessage(response.response)
+      return false
     }
-
+    alert.success('Welcome dear user!')
+    props.history.push('/')
   }
 
+  const responseGoogle = async (response) => {
+    if (response.error) {
+      alert.error('Try Again, please')
+    } else {
+      const res = await props.signIn({
+        email: response.profileObj.email,
+        password: response.profileObj.googleId,
+      })
+
+      alert.success('Welcome dear user!')
+    }
+  }
 
   return (
     <div className="centrar forms">
       <div className="form">
         <GiWorld className="worldIcon" />
         <h2>Sign in!</h2>
-        {errorMessage}
+        <p>{errorMessage}</p>
         <input type="email" name="email" placeholder="Please, enter your email adress" onChange={handleInput} />
         <input type="password" name="password" placeholder="Please, enter your password" onChange={handleInput} />
         <button className="logUserBtn" onClick={handleClick}>Sign in!</button>
         <p> Or you can sign in with your Google account</p>
-        <div className="google">
-          <img src={Google} alt="" className="logoImg" />
-          <div className="googleText">
-            <p>Log in with Google</p>
-          </div>
+        <div className="googleBtn">
+          <GoogleLogin
+            clientId="64572824100-laueolo93op2un8m3ajq5g9t8dkriduv.apps.googleusercontent.com"
+            buttonText="Sign in with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
         </div>
         <p>Don't have an account?  <Link to='/signup' className="logLink">Sign up here!</Link></p>
       </div>

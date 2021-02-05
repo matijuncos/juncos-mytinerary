@@ -6,14 +6,23 @@ import { FaHome, FaPaperPlane } from "react-icons/fa";
 import { BiCaretDown } from "react-icons/bi";
 import { connect } from 'react-redux';
 import userActions from '../Redux/actions/userActions';
+import { useAlert } from 'react-alert'
+
 
 
 function Navbar(props) {
+    const alert = useAlert()
     const { loggedUser } = props
     const [nav, setNav] = useState(true);
     const [userlinks, setUserLinks] = useState(true)
     const openNav = () => {
         setNav(!nav)
+    }
+
+    const signOut = () => {
+        alert.show('Hope to see you soon!')
+        props.signOut()
+        localStorage.clear()
     }
     return (
         <nav>
@@ -28,7 +37,7 @@ function Navbar(props) {
                                 <Link to='/signup' className="signInLinks">Sign Up</Link>
                             </>
                         ) : (
-                                <p className="signInLinks" onClick={() => props.signOut()}>Sign Out</p>
+                                <p className="signInLinks" onClick={signOut}>Sign Out</p>
                             )
                         }
                     </div>

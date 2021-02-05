@@ -7,19 +7,34 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import City from './components/City';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import { connect } from 'react-redux';
+import userActions from './Redux/actions/userActions';
 
-function App() {
-
+function App(props) {
+  console.log(props)
+  if(!props.loggedUser){
+    var links = 
+    <>
+      <Route exact path="/" component={Main} />
+      <Route path='/signin' component={SignIn}/>
+      <Route path='/signup' component={SignUp}/>
+      <Route  path="/cities" component={Cities} />
+    </>
+  }else{
+    links= 
+    <>
+        <Route exact path="/" component={Main} />
+        <Route  path="/cities" component={Cities} />
+        <Route  path='/itineraries/:id' component={City} />
+        <Redirect to='/'/>
+    </>
+  }
   return (
   <>
     <Router>
       <Navbar/>
         <Switch>
-          <Route path='/signin' component={SignIn}/>
-          <Route path='/signup' component={SignUp}/>
-          <Route exact path="/" component={Main} />
-          <Route  path="/cities" component={Cities} />
-          <Route  path='/itineraries/:id' component={City} />
+          {links}
         </Switch>  
     </Router>
     <Footer/>
@@ -27,5 +42,13 @@ function App() {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    loggedUser: state.userR.loggedUser
+  }
+}
 
-export default App;
+const mapDispatchToProps = {
+  preserveLog: userActions.preserveLog
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App)

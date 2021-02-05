@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-
+const passport = require('passport')
+require('../config/passport')
 const citiesController = require('../controllers/citiesController')
 const itinerariesController = require('../controllers/itinerariesController')
 const userController = require('../controllers/userController')
@@ -15,7 +16,8 @@ router.route('/cities')
  
 router.route('/itineraries')
 .get(itinerariesController.getItinearies)
-.post(itinerariesController.addItinerarie)
+.post(passport.authenticate('jwt', {session:false}), itinerariesController.addItinerarie)
+//la ruta protegida recibe al autor en req.body
 
 router.route('/itinerary/:itId')
 .put(itinerariesController.updateItinerary)
@@ -28,5 +30,8 @@ router.route('/user/signup')
 
 router.route('/user/signin')
 .post(userController.signIn)
+
+router.route('/user/storage')
+.post(passport.authenticate('jwt', {session:false}), userController.preserveLog)
 
 module.exports = router

@@ -3,11 +3,15 @@ import axios from 'axios'
 const userActions = {
   signUp: (newUser) =>{
     return async (dispatch, getState) =>{
-      const res = await axios.post('http://localhost:4000/api/user/signup', newUser)
- 
+      const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
+      console.log(response)
+      if(!response.data.success){
+        return response.data
+      }
+
       dispatch({
-        type: "SIGN_UP",
-        payload: res.data
+        type: "USER_LOG",
+        payload: response.data
       })
     }
   },
@@ -18,18 +22,33 @@ const userActions = {
         return response.data
       }
         dispatch({
-          type: "SIGN_IN",
+          type: "USER_LOG",
           payload: response.data
         })
     }
   },
   signOut: () =>{
-    return (dispatch, getState) =>{
+    return async (dispatch, getState) =>{
       dispatch({
         type: "SIGN_OUT",
       })
     }
+  },
+  preserveLog: (token) =>{
+    return async (dispatch, getState) =>{
+      const response = await axios.post('http://localhost:4000/api/user/storage', {token}, {
+        headers:{
+          Authorization: 'Bearer ' + token
+        }
+      })
+
+     dispatch({
+       type: "USER_LOG",
+       payload: {response: {...response.data.response}}
+     })
+    }
   }
+  
 }
 
 export default userActions

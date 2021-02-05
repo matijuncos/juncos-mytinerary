@@ -130,6 +130,11 @@ nav img {
   color: rgb(255, 255, 255);
   font-size: 2rem;
 }
+.googleBtn{
+  margin: 1vh;
+}
+
+
 
 .slide {
   display: flex;
@@ -724,6 +729,7 @@ margin-bottom: 1vh;
 .form input,
 .form select{
   padding: 1.2vh;
+  width: 90%;
   margin: 1vh;
   border-radius: 6px;
   outline: none;
@@ -777,6 +783,18 @@ margin-bottom: 1vh;
 }
 .logoImg{
   width: 30px;
+}
+
+.signupInput{
+  width: 100%;
+  position: relative;
+  margin: 1vh 0;
+}
+.small{
+  position: absolute;
+  top: -15px;
+  left: 2rem;
+  color: rgb(205, 225, 255);
 }
 @-webkit-keyframes load1 {
   0%,
