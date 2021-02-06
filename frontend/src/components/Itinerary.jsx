@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Comment from './Comment'
 import { IoIosHeart } from "react-icons/io";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -15,11 +15,9 @@ import itinerariesActions from '../Redux/actions/itinerariesActions';
 
 const Itinerary = (props) => {
   const alert = useAlert()
-
   const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities, _id } = props.itinerary
   const [visible, setVisible] = useState(false)
   const [comment, setComment] = useState('')
-
 
   const handleVisible = () => {
     setVisible(!visible)
@@ -29,12 +27,11 @@ const Itinerary = (props) => {
     setComment(e.target.value)
   }
 
-
   const sendComment = async () => {
     if (comment.length !== 0) {
       const res = await props.sendComment(comment, localStorage.getItem('token'), _id)
+      setComment('')
       props.getItineraries(props.id)
-      document.getElementById('input').value = ''
     } else {
       alert.error("You can't send empty comments")
     }
@@ -65,10 +62,10 @@ const Itinerary = (props) => {
             <div className="commentContainer">
               <h3>Comments</h3>
               <div className="comments">
-                {comments.map(comment => <Comment comment={comment} key={comment._id} />)}
+                {comments.map(comment => <Comment comment={comment} key={comment._id} IdItinerary={_id} id={props.id} />)}
               </div>
               <div className="inputDiv">
-                <input type="text" name="content" placeholder='You must be logged in to comment' className="commentInput" onChange={handleComments} id="input" />
+                <input type="text" name="content" placeholder='You must be logged in to comment' className="commentInput" onChange={handleComments} value={comment} />
                 <MdSend className="commentIcon" onClick={sendComment} id={_id} />
               </div>
             </div>

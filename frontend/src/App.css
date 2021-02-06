@@ -555,6 +555,17 @@ margin-bottom: 1vh;
   border-radius: 5px 18px 18px 18px;
   font-size: .9rem;
   box-shadow: 5px 5px 28px rgba(0, 0, 0, 0.432);
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.commentIcons{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0 0 0 3vh;
+  font-size: 1rem;
+  font-weight: bold;
 }
 .comment .user{
   font-weight: 600;
@@ -564,6 +575,22 @@ margin-bottom: 1vh;
 }
 .inputDiv{
   position: relative;
+}
+.update{
+  width: 40vw;
+}
+.updateIcon{
+  position: absolute;
+  bottom: 6px;
+  right: 1.2rem;
+  font-size: 1.7rem;
+  color: rgb(69, 69, 76);
+  cursor: pointer;
+}
+.cancelBtn{
+  font-size: 1.5rem;
+  top: 16px;
+  right: 3rem;
 }
 .commentInput{
   width: 98%;
@@ -579,6 +606,21 @@ margin-bottom: 1vh;
   font-size: 1.7rem;
   color: rgb(69, 69, 76);
   cursor: pointer;
+
+}
+.commentIcon:active{
+  color: rgb(43, 43, 133);
+}
+.editComment{
+  margin: 4px;
+  color: rgb(68, 68, 68);
+  cursor: pointer;
+}
+.editComment:active{
+  color: rgb(128, 83, 0);
+}
+.trash:active{
+  color: rgb(172, 0, 0);
 }
 
 .failedSearch {
@@ -796,6 +838,18 @@ margin-bottom: 1vh;
   left: 2rem;
   color: rgb(205, 225, 255);
 }
+.hashtags{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  font-size: .8rem;
+  color: blue;
+  flex-wrap: wrap;
+}
+
+.hashtag{
+  margin: 1vh;
+}
 @-webkit-keyframes load1 {
   0%,
   80%,
@@ -821,18 +875,8 @@ margin-bottom: 1vh;
   }
 }
 
-.hashtags{
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  font-size: .8rem;
-  color: blue;
-  flex-wrap: wrap;
-}
 
-.hashtag{
-  margin: 1vh;
-}
+
 @media (max-width: 600px) {
   #root {
     overflow-x: hidden;

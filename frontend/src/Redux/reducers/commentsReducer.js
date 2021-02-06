@@ -11,7 +11,15 @@ const citiesReducer = (state = initState, action) =>{
         comments: action.payload,
         
       }
-    
+    case "DEL_COMMENT":
+      return{
+        ...state
+      }
+    case "UPDATE_COMMENT":
+      return{
+        ...state,
+        comments: action.payload
+      }
     default:
       return state
   }

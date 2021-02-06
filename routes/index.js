@@ -23,7 +23,12 @@ router.route('/itineraries')
 
 router.route('/comments')
 .post(passport.authenticate('jwt', {session:false}), commentsController.addComments)
-.put(passport.authenticate('jwt', {session:false}), commentsController.addComments)
+.put(passport.authenticate('jwt', {session:false}), commentsController.removeComment)
+
+router.route('/commentupdate')
+.post(passport.authenticate('jwt', {session:false}), commentsController.updateComment)
+
+//.put(passport.authenticate('jwt', {session:false}), commentsController.addComments)
 
 router.route('/itinerary/:itId')
 .put(itinerariesController.updateItinerary)
