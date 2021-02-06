@@ -53,7 +53,6 @@ const userController = {
       })
     },
     preserveLog: (req, res) => {
-     console.log(req.user) //veo si llega el user y que datos trae.
       res.json({
         success: true, 
         response: {

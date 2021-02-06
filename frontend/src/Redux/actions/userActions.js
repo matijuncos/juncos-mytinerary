@@ -42,7 +42,6 @@ try{
         Authorization: 'Bearer ' + token
       }
     })
-    console.log(response)
 
    dispatch({
      type: "USER_LOG",

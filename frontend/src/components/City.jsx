@@ -37,7 +37,7 @@ const City = (props) => {
                 </div>
 
                 <div className="insideEachCitie" >
-                    {itineraries.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id} />)}
+                    {itineraries.map(itinerary => <Itinerary itinerary={itinerary} key={itinerary._id} id={id} />)}
                 </div>
                 <div className="buttons">
                     <Link to='/cities' className="linksBtn">

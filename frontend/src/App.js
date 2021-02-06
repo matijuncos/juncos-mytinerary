@@ -13,9 +13,8 @@ import userActions from './Redux/actions/userActions';
 
 function App(props) {
 
-  const[refresh, setRefresh] = useState()
+  const[refresh, setRefresh] = useState(true)
 
-  console.log(props)
   if(props.loggedUser){
     var links = 
     <>

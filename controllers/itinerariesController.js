@@ -58,7 +58,6 @@ const itinerariesController = {
        })
     })
    }
-   
 }
 
 module.exports = itinerariesController
