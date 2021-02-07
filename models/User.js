@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   password: String,
   userPicture: String,
   country: String,
-  likes: [{type: mongoose.Schema.Types.ObjectId, ref:'itinerary'}]
+  
+  
 })
 
 const User = mongoose.model('user', userSchema)

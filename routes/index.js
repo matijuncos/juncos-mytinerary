@@ -7,6 +7,7 @@ const commentsController = require('../controllers/commentsController')
 const itinerariesController = require('../controllers/itinerariesController')
 const userController = require('../controllers/userController')
 const validator = require('../controllers/validator')
+const likesController = require('../controllers/likesController')
 
 
 
@@ -28,7 +29,8 @@ router.route('/comments')
 router.route('/commentupdate')
 .post(passport.authenticate('jwt', {session:false}), commentsController.updateComment)
 
-//.put(passport.authenticate('jwt', {session:false}), commentsController.addComments)
+// router.route('/like')
+// .post(passport.authenticate('jwt', {session:false}), likesController.newLike)
 
 router.route('/itinerary/:itId')
 .put(itinerariesController.updateItinerary)
@@ -46,6 +48,7 @@ router.route('/user/storage')
 .post(passport.authenticate('jwt', {session:false}), userController.preserveLog)
 //la ruta protegida recibe al usuario en req.body
 
-
+router.route('/like')
+.post(passport.authenticate('jwt', {session:false}), likesController.likeItinerary)
 
 module.exports = router

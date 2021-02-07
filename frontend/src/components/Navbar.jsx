@@ -23,6 +23,7 @@ function Navbar(props) {
         alert.show('Hope to see you soon!')
         props.signOut()
         localStorage.clear()
+
     }
     return (
         <nav>
@@ -37,7 +38,7 @@ function Navbar(props) {
                                 <Link to='/signup' className="signInLinks">Sign Up</Link>
                             </>
                         ) : (
-                                <p className="signInLinks" onClick={signOut}>Sign Out</p>
+                                <Link to='/' className="signInLinks" onClick={signOut}>Sign Out</Link>
                             )
                         }
                     </div>

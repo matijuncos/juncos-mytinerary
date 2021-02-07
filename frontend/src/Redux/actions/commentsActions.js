@@ -46,12 +46,11 @@ const commentsActions = {
             Authorization: 'Bearer ' + token
           }
           })
-          console.log(response)
           dispatch({
             type: "UPDATE_COMMENT",
             payload: response.data
           })
-          console.log(response)
+          
       }catch(error){
         console.log(error)
       }

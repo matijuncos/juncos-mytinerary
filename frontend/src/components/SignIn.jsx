@@ -43,10 +43,11 @@ const SignIn = (props) => {
     if (response.error) {
       alert.error('Try Again, please')
     } else {
-      const res = await props.signIn({
+      await props.signIn({
         email: response.profileObj.email,
         password: response.profileObj.googleId,
       })
+      console.log(response)
 
       alert.success('Welcome dear user!')
     }

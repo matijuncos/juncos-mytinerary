@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import commentsActions from '../Redux/actions/commentsActions'
 import { useAlert } from 'react-alert'
 import itinerariesActions from '../Redux/actions/itinerariesActions';
+import likeActions from '../Redux/actions/likeAction';
 
 
 const Itinerary = (props) => {
@@ -18,6 +19,7 @@ const Itinerary = (props) => {
   const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities, _id } = props.itinerary
   const [visible, setVisible] = useState(false)
   const [comment, setComment] = useState('')
+  const [like, setLike] = useState(false)
 
   const handleVisible = () => {
     setVisible(!visible)
@@ -27,16 +29,22 @@ const Itinerary = (props) => {
     setComment(e.target.value)
   }
 
+
   const sendComment = async () => {
     if (comment.length !== 0) {
-      const res = await props.sendComment(comment, localStorage.getItem('token'), _id)
+      await props.sendComment(comment, localStorage.getItem('token'), _id)
       setComment('')
       props.getItineraries(props.id)
     } else {
       alert.error("You can't send empty comments")
     }
   }
+  const handleLikes = () => {
+    setLike(!like)
+    props.like(localStorage.getItem('token'), _id)
 
+  }
+  console.log(props)
   return (
     <>
       <div className="itinerary">
@@ -46,7 +54,7 @@ const Itinerary = (props) => {
         <div className="itInfo">
           <p className="price"><span className="bold">Price:</span>{[...Array(price)].map((money, idx) => <FaRegMoneyBillAlt className="cash" key={idx} />)}</p>
           <p className="hours"><span className="bold">Duration:</span> {[...Array(duration)].map(clocks => <FcClock className="clock" key={uuidv4()} />)} </p>
-          <p className="likes">{likes === 0 ? <IoIosHeartEmpty className="heart" /> : <IoIosHeart className="heart" />} <span className="likesSpan">{likes}</span></p>
+          <p className="likes">{!like ? <IoIosHeartEmpty className="heart" /> : <IoIosHeart className="heart" />} <span className="likesSpan" ><button onClick={handleLikes}>Like</button>{likes.length}</span></p>
         </div>
         <div className="hashtags">
           {hastags.map(hashtag => <p className="hashtag" key={hashtag}>#{hashtag}</p>)}
@@ -83,7 +91,8 @@ const Itinerary = (props) => {
 
 const mapDispatchToProps = {
   getItineraries: itinerariesActions.getItineraries,
-  sendComment: commentsActions.sendComment
+  sendComment: commentsActions.sendComment,
+  like: likeActions.like
 
 }
 

@@ -49,10 +49,10 @@ const SignUp = (props) => {
   }
 
   const handleClick = async () => {
-    if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.userPicture === '' || newUser.country === '') {
-      alert.error("Please complete the form to sign up!")
-      return false
-    }
+    // if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.userPicture === '' || newUser.country === '') {
+    //   alert.error("Please complete the form to sign up!")
+    //   return false
+    // }
     const res = await signUp(newUser)
     if (res && !res.success) {
       res.errors.details.map(error => {
@@ -61,21 +61,18 @@ const SignUp = (props) => {
 
       })
       setErrors(failedInputs)
-
     } else {
       alert.success("Your account was created successfully!")
       props.history.push('/')
     }
-
   }
-
 
   const responseGoogle = async (response) => {
     if (response.error) {
       alert.error('Try Again')
     } else {
 
-      const googleUSer = await signUp({
+      await signUp({
         firstName: response.profileObj.givenName,
         lastName: response.profileObj.familyName,
         email: response.profileObj.email,
@@ -86,7 +83,6 @@ const SignUp = (props) => {
       alert.success("Your account was created successfully!")
     }
   }
-
   return (
     <div className="centrar forms">
 

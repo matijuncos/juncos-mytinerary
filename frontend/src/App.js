@@ -41,6 +41,7 @@ function App(props) {
           <Route path='/signin' component={SignIn}/>
           <Route path='/signup' component={SignUp}/>
           <Route  path="/cities" component={Cities} />
+          <Route  path='/itineraries/:id' component={City} />
           <Redirect to='/'/>
         </Switch>
       

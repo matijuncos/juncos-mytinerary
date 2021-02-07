@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BsTrash } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 import { connect } from 'react-redux';
@@ -8,14 +8,13 @@ import { MdSend } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
 
 const Comment = (props) => {
-  console.log(props)
   const { comment } = props
   const [visible, setVisible] = useState(false)
   const [updatedComment, setUpdatedComment] = useState('')
+  const [user, setUser] = useState('')
 
   const deleteComment = async (e) => {
     const commentId = e.currentTarget.id
-    console.log("el id del comment es " + commentId)
     const IdItinerary = props.IdItinerary
     await props.deleteComment(localStorage.getItem('token'), commentId, IdItinerary)
     props.getItineraries(props.id)
@@ -32,12 +31,16 @@ const Comment = (props) => {
   }
   const sendUpdate = async (e) => {
     const commentId = e.currentTarget.id
-    console.log(commentId)
     const IdItinerary = props.IdItinerary
     await props.updateComment(localStorage.getItem('token'), updatedComment, commentId, IdItinerary)
     props.getItineraries(props.id)
     setVisible(!visible)
   }
+  useEffect(() => {
+    if (props.loggedUser) {
+      setUser(props.loggedUser.response.email)
+    }
+  }, [])
 
   return (
     <>
@@ -57,8 +60,12 @@ const Comment = (props) => {
                 <p className="content">{comment.content}</p>
               </div>
               <div className="commentIcons">
-                <BsPencilSquare onClick={updateComment} className="editComment" />
-                <BsTrash onClick={deleteComment} className="editComment trash" id={comment._id} />
+                {props.comment.email === user && (
+                  <>
+                    <BsPencilSquare onClick={updateComment} className="editComment" />
+                    <BsTrash onClick={deleteComment} className="editComment trash" id={comment._id} />
+                  </>
+                )}
               </div>
             </>
           )}
@@ -74,4 +81,10 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(null, mapDispatchToProps)(Comment)
+const mapStateToProps = state => {
+  return {
+    data: state.commentR.comments,
+    loggedUser: state.userR.loggedUser
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Comment)
