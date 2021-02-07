@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Comment from './Comment'
 import { IoIosHeart } from "react-icons/io";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -19,8 +19,7 @@ const Itinerary = (props) => {
   const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities, _id } = props.itinerary
   const [visible, setVisible] = useState(false)
   const [comment, setComment] = useState('')
-  const [like, setLike] = useState(false)
-
+  const [userliked, setUserLiked] = useState('')
   const handleVisible = () => {
     setVisible(!visible)
   }
@@ -29,6 +28,11 @@ const Itinerary = (props) => {
     setComment(e.target.value)
   }
 
+  useEffect(() => {
+    if (props.loggedUser) {
+      setUserLiked(props.loggedUser.response.id)
+    }
+  }, [])
 
   const sendComment = async () => {
     if (comment.length !== 0) {
@@ -39,12 +43,15 @@ const Itinerary = (props) => {
       alert.error("You can't send empty comments")
     }
   }
-  const handleLikes = () => {
-    setLike(!like)
-    props.like(localStorage.getItem('token'), _id)
-
+  const handleLikes = async () => {
+    await props.like(localStorage.getItem('token'), _id)
+    props.getItineraries(props.id)
   }
-  console.log(props)
+
+  const handleDislike = async () => {
+    await props.dislike(localStorage.getItem('token'), _id)
+    props.getItineraries(props.id)
+  }
   return (
     <>
       <div className="itinerary">
@@ -54,7 +61,7 @@ const Itinerary = (props) => {
         <div className="itInfo">
           <p className="price"><span className="bold">Price:</span>{[...Array(price)].map((money, idx) => <FaRegMoneyBillAlt className="cash" key={idx} />)}</p>
           <p className="hours"><span className="bold">Duration:</span> {[...Array(duration)].map(clocks => <FcClock className="clock" key={uuidv4()} />)} </p>
-          <p className="likes">{!like ? <IoIosHeartEmpty className="heart" /> : <IoIosHeart className="heart" />} <span className="likesSpan" ><button onClick={handleLikes}>Like</button>{likes.length}</span></p>
+          <p className="likes">{likes.includes(userliked) ? <IoIosHeart className="heart" onClick={handleDislike} /> : <IoIosHeartEmpty className="heart" onClick={handleLikes} />}<span className="likesSpan" >{likes.length}</span></p>
         </div>
         <div className="hashtags">
           {hastags.map(hashtag => <p className="hashtag" key={hashtag}>#{hashtag}</p>)}
@@ -92,8 +99,14 @@ const Itinerary = (props) => {
 const mapDispatchToProps = {
   getItineraries: itinerariesActions.getItineraries,
   sendComment: commentsActions.sendComment,
-  like: likeActions.like
-
+  like: likeActions.like,
+  dislike: likeActions.dislike
 }
 
-export default connect(null, mapDispatchToProps)(Itinerary)
+const mapStateToProps = state => {
+  return {
+    loggedUser: state.userR.loggedUser
+
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary)

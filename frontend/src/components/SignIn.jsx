@@ -47,7 +47,6 @@ const SignIn = (props) => {
         email: response.profileObj.email,
         password: response.profileObj.googleId,
       })
-      console.log(response)
 
       alert.success('Welcome dear user!')
     }

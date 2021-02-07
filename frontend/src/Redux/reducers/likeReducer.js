@@ -9,6 +9,11 @@ const likeReducer = (state = initState, action)=>{
         ...state,
         likes: action.payload
       }
+    case "DISLIKE":
+      return{
+        ...state,
+        likes: action.payload
+      }
       default: 
         return state
   }

@@ -51,4 +51,8 @@ router.route('/user/storage')
 router.route('/like')
 .post(passport.authenticate('jwt', {session:false}), likesController.likeItinerary)
 
+router.route('/dislike')
+.post(passport.authenticate('jwt', {session:false}), likesController.dislikeItinerary)
+
+
 module.exports = router

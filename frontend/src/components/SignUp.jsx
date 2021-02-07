@@ -55,7 +55,9 @@ const SignUp = (props) => {
     // }
     const res = await signUp(newUser)
     if (res && !res.success) {
-      res.errors.details.map(error => {
+      console.log(props)
+      console.log(res)
+      res.errors.map(error => {
         failedInputs[error.context.label] = error.message
         return false
 

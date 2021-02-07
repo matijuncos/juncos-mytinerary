@@ -22,7 +22,8 @@ const validator = {
           "string.base": "Sorry! It looks like something went wrong. Please try later.",
           "string.empty": "Your mail address is a required field",
           "any.required": "Your mail address is a required field",
-          "string.email": "Please write a valid email address"
+          "string.email": "Please write a valid email address",
+          "array.unique": "There's already an account with that mail account"
         }),
         password: Joi.string().trim().required().min(6).messages({
           "string.base": "Sorry! It looks like something went wrong. Please try later.",
@@ -51,7 +52,7 @@ const validator = {
         next()
       }else{
         res.json({
-          success: false, errors: validation.error
+          success: false, errors: validation.error.details
         })
       }
     }

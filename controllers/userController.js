@@ -5,10 +5,11 @@ const jwtoken = require('jsonwebtoken')
 const userController = {
   signUp: async (req, res) =>{
     const {firstName, lastName, email, password, userPicture, country} = req.body //son las propiedades que vienen desde el formulario del componente
-    const errors = [] 
+    var errors= []
     const usedUserName = await User.findOne({email: email}) //me fijo si ya existe alguien con ese mail
     if(usedUserName){
-      errors.push("There's already an account using that mail adress") //si ya existe, mando el error al array vacío
+      var error = {context: {label: 'email'}, message: "There's already an account with that mail"}
+      errors.push(error)
     }
     if(errors.length === 0){ //si no han habido errores, hasheo el password y genero el nuevo usuario, con el password haseado
       const hashedPass = bcryptjs.hashSync(password, 10)
@@ -24,8 +25,10 @@ const userController = {
       response: errors.length === 0 && { //si no hay errores, la respuesta será el token, el nombre y la foto de usuario.
         token, 
         firstName: savedUser.firstName, 
-        email: existingUser.email, 
-        userPicture: savedUser.userPicture
+        email: savedUser.email, 
+        userPicture: savedUser.userPicture,
+        id: savedUser._id
+
       }
     })
   },
@@ -51,7 +54,9 @@ const userController = {
         token, 
         firstName: existingUser.firstName, 
         email: existingUser.email, 
-        userPicture: existingUser.userPicture}
+        userPicture: existingUser.userPicture,
+        id: existingUser._id
+      }
       })
     },
     preserveLog: (req, res) => {
@@ -61,7 +66,8 @@ const userController = {
           token: req.body.token, 
           firstName: req.user.firstName,
           email: req.user.email,
-          userPicture: req.user.userPicture
+          userPicture: req.user.userPicture,
+          id: req.user._id
           
         }})
      }
@@ -69,3 +75,7 @@ const userController = {
   
   module.exports = userController
   //jsonwebtoken para generar un token
+
+
+
+  
