@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const itinerariesActions = {
@@ -14,25 +16,27 @@ const itinerariesActions = {
         })
     }catch(error){
       console.log(error)
+      toast.error("Oops! Something went wrong")
       }
     }
   },
-  sendComment: (comment, token, id, itineraries) =>{
+  sendComment: (comment, token, id) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/comments/', {comment, token, id, itineraries},{
+        const response = await axios.post('http://localhost:4000/api/comments/', {comment, token, id},{
           headers:{
             Authorization: 'Bearer ' + token
           }
         })
         
         dispatch({
-          type: "SEND_COMMENT",
+          type: "COMMENTS_LIKES",
           payload: response.data
           
         })
         return false
     }catch(error){
+      toast.error("Oops! Something went wrong")
       console.log(error)
       }
     }
@@ -46,12 +50,14 @@ const itinerariesActions = {
           }
         })
         dispatch({
-          type: "DEL_COMMENT",
+          type: "COMMENTS_LIKES",
           payload: response.data
           
         })
       }catch(error){
         console.log(error)
+        toast.error("Oops! Something went wrong")
+
       }
     }
   },
@@ -64,12 +70,14 @@ const itinerariesActions = {
           }
           })
           dispatch({
-            type: "UPDATE_COMMENT",
+            type: "COMMENTS_LIKES",
             payload: response.data
           })
           
       }catch(error){
         console.log(error)
+        toast.error("Oops! Something went wrong")
+
       }
     }
   },
@@ -83,12 +91,14 @@ const itinerariesActions = {
           }
         })
         dispatch({
-          type: "LIKE",
+          type: "COMMENTS_LIKES",
           payload: response.data
         })
         
       }catch(err){
         console.log(err)
+        toast.error("Oops! Something went wrong")
+
       }
     }
   },
@@ -102,11 +112,13 @@ const itinerariesActions = {
           }
         })
         dispatch({
-          type: "DISLIKE",
+          type: "COMMENTS_LIKES",
           payload: response.data
         })
       }catch(err){
         console.log(err)
+        toast.error("Oops! Something went wrong")
+
       }
     }
   }

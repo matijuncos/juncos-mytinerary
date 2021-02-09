@@ -16,7 +16,6 @@ const Comment = (props) => {
     const commentId = e.currentTarget.id
     const IdItinerary = props.IdItinerary
     await props.deleteComment(props.loggedUser.response.token, commentId, IdItinerary)
-    props.getItineraries(props.id)
   }
 
   const updateComment = () => {
@@ -32,7 +31,6 @@ const Comment = (props) => {
     const commentId = e.currentTarget.id
     const IdItinerary = props.IdItinerary
     await props.updateComment(props.loggedUser.response.token, updatedComment, commentId, IdItinerary)
-    props.getItineraries(props.id)
     setVisible(!visible)
   }
   useEffect(() => {
@@ -48,7 +46,7 @@ const Comment = (props) => {
           <>
             <div className="inputDiv update">
               <ImCancelCircle className="cancelBtn" onClick={() => setVisible(!visible)} />
-              <input type="text" name="content" placeholder='Write your comment here' className="commentInput update" onChange={handleInput} value={updatedComment} autoFocus />
+              <input type="text" name="content" placeholder='Write your comment here' className="commentInput update" onChange={handleInput} value={updatedComment} autoFocus autoComplete="off" />
               <MdSend className="updateIcon" onClick={sendUpdate} id={comment._id} />
             </div>
           </>
@@ -77,7 +75,6 @@ const Comment = (props) => {
 
 const mapDispatchToProps = {
   deleteComment: itinerariesActions.deleteComment,
-  getItineraries: itinerariesActions.getItineraries,
   updateComment: itinerariesActions.updateComment
 
 }

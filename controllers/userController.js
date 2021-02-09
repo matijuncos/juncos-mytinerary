@@ -21,7 +21,6 @@ const userController = {
       var savedUser = await newUser.save() //aqui al nuevo usuario lo guardo en la BD y genero un token con los datos del usuario
       var token = jwtoken.sign({...savedUser}, process.env.SECRET_KEY, {})
     }
-
     return res.json({//respuesta al frontend
       success: errors.length === 0 ? true : false, //suceess sera true si no han habido errores, envío al front los errores
       errors,
@@ -46,9 +45,7 @@ const userController = {
     if(!matchingPass){//pero si escribe mal la contraseña
       return res.json({success: false, response: loginerror})//responde con el mismo error
     }
-
     var token = jwtoken.sign({...existingUser}, process.env.SECRET_KEY, {}) //si puso bien la contraseña, genera un token con los datos del usuario y lo almacena en la var token
-    
     return res.json({
       success: true,  //si todo salio bien, le respondo al front-end con el token (existing user) y el nombre y foto para poder usarlo. Ningun dato sensible
       response: {

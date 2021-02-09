@@ -35,7 +35,7 @@ const SignIn = (props) => {
       setErrorMessage(response.response)
 
     } else {
-      alert.success('Welcome dear user!')
+      alert.success('welcome')
       props.history.push('/')
     }
   }
@@ -49,7 +49,7 @@ const SignIn = (props) => {
         password: response.profileObj.googleId,
       })
 
-      alert.success('Welcome dear user!')
+      //alert.success('Welcome dear user!')
     }
   }
 

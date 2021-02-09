@@ -10,7 +10,6 @@ const userActions = {
         if(!response.data.success){
           return response.data
         }
-        
         dispatch({
           type: "USER_LOG",
           payload: response.data
@@ -34,7 +33,7 @@ const userActions = {
           payload: response.data
         })
       }catch(err){
-        toast("Oops! Something went wrong!")
+        toast.error("Oops! Something went wrong!")
         console.log(err)
       }
     }

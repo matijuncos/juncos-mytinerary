@@ -9,14 +9,11 @@ const commentsController = {
       {$push: {comments: {userName: req.user.firstName + " " + req.user.lastName, content:req.body.comment, email: req.user.email}}},
       {new: true}
         )
-      .then( async newComment=> {
-        return res.json({
+      .then( newComment=> res.json({
           success: true,
-          response: {
-            newComment, 
-            user}
+          response: newComment
         })
-      })
+      )
       .catch(err => console.log(err))
 
   },
@@ -28,9 +25,9 @@ const commentsController = {
        {$pull: {comments: {_id: commentId}}},//ver bien que va acá
        {new: true}
     )
-    .then( data => res.json({
+    .then( newComment => res.json({
       success: true, 
-      response: data
+      response: newComment
     }))
     .catch(error => res.json({
       success: false,
@@ -47,9 +44,9 @@ const commentsController = {
       {$set: {'comments.$.content': req.body.updatedComment}},//ver bien como va acá y si es el metod set
       {new: true}
     )
-    .then( data => res.json({
+    .then( newComment => res.json({
       success: true,
-      response: data, token, user
+      response: newComment
     }))
     .catch(error => res.json({
       success: false,

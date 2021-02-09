@@ -93,23 +93,23 @@ const SignUp = (props) => {
         <h2>Sign up!</h2>
         <div className="signupInput">
           <small className="small">{errors.firstName && errors.firstName}</small>
-          <input type="text" name="firstName" placeholder="Please, enter your first name" onChange={handleForm} />
+          <input type="text" name="firstName" placeholder="Please, enter your first name" onChange={handleForm} autoComplete="off" />
         </div>
         <div className="signupInput">
           <small className="small">{errors.lastName && errors.lastName}</small>
-          <input type="text" name="lastName" placeholder="Please, enter your last name" onChange={handleForm} />
+          <input type="text" name="lastName" placeholder="Please, enter your last name" onChange={handleForm} autoComplete="off" />
         </div>
         <div className="signupInput">
           <small className="small">{errors.email && errors.email}</small>
-          <input type="email" name="email" placeholder="Please, enter your email adress" onChange={handleForm} />
+          <input type="email" name="email" placeholder="Please, enter your email adress" onChange={handleForm} autoComplete="off" />
         </div>
         <div className="signupInput">
           <small className="small">{errors.password && errors.password}</small>
-          <input type="password" name="password" placeholder="Please, enter your password" onChange={handleForm} />
+          <input type="password" name="password" placeholder="Please, enter your password" onChange={handleForm} autoComplete="off" />
         </div>
         <div className="signupInput">
           <small className="small">{errors.userPicture && errors.userPicture}</small>
-          <input type="text" name="userPicture" placeholder="Please, enter the URL of your picture" onChange={handleForm} />
+          <input type="text" name="userPicture" placeholder="Please, enter the URL of your picture" onChange={handleForm} autoComplete="off" />
         </div>
         <div className="signupInput">
           <small className="small">{errors.country && errors.country}</small>

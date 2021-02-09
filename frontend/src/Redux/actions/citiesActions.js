@@ -1,3 +1,7 @@
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const citiesAction = {
   getCities: () =>{
     return async (dispatch, getState) =>{
@@ -10,6 +14,7 @@ const citiesAction = {
         })
     } catch(error){
        console.log(error);
+       toast.error('Oops! Seomthing went wrong')
         }
     }
     },

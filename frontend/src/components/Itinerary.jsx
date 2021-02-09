@@ -35,9 +35,7 @@ const Itinerary = (props) => {
 
   const sendComment = async () => {
     if (comment.length !== 0 && props.loggedUser) {
-
-      await props.sendComment(comment, props.loggedUser.response.token, _id, props.allItineraries)
-      props.getItineraries(props.id)
+      await props.sendComment(comment, props.loggedUser.response.token, _id)
       setComment('')
 
     } else if (comment.length === 0 && props.loggedUser) {
@@ -48,13 +46,11 @@ const Itinerary = (props) => {
   }
   const handleLikes = async () => {
     await props.like(props.loggedUser.response.token, _id)
-    props.getItineraries(props.id)
 
   }
 
   const handleDislike = async () => {
     await props.dislike(props.loggedUser.response.token, _id)
-    props.getItineraries(props.id)
   }
   return (
     <>
@@ -84,7 +80,7 @@ const Itinerary = (props) => {
                 {comments.map(comment => <Comment comment={comment} key={comment._id} IdItinerary={_id} id={props.id} />)}
               </div>
               <div className="inputDiv">
-                <input type="text" name="content" placeholder={props.loggedUser ? 'Leave your comment here!' : 'You must be logged in to comment'} className="commentInput" onChange={handleComments} value={comment} disabled={!props.loggedUser && true} />
+                <input type="text" name="content" placeholder={props.loggedUser ? 'Leave your comment here!' : 'You must be logged in to comment'} className="commentInput" onChange={handleComments} value={comment} disabled={!props.loggedUser && true} autoComplete="off" />
                 <MdSend className="commentIcon" onClick={sendComment} id={_id} />
               </div>
             </div>
@@ -101,7 +97,6 @@ const Itinerary = (props) => {
 
 
 const mapDispatchToProps = {
-  getItineraries: itinerariesActions.getItineraries,
   sendComment: itinerariesActions.sendComment,
   like: itinerariesActions.like,
   dislike: itinerariesActions.dislike
