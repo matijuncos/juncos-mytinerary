@@ -10,6 +10,9 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { connect } from 'react-redux';
 import userActions from './Redux/actions/userActions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App(props) {
 
@@ -49,6 +52,8 @@ function App(props) {
   }
   return (
   <>
+        <ToastContainer />
+
     <Router>
       <Navbar/>
           {links}

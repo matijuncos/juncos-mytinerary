@@ -8,10 +8,9 @@ import Activity from './Activity';
 import { FcClock } from "react-icons/fc";
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import commentsActions from '../Redux/actions/commentsActions'
 import { useAlert } from 'react-alert'
 import itinerariesActions from '../Redux/actions/itinerariesActions';
-import likeActions from '../Redux/actions/likeAction';
+
 
 
 const Itinerary = (props) => {
@@ -35,21 +34,26 @@ const Itinerary = (props) => {
   }, [])
 
   const sendComment = async () => {
-    if (comment.length !== 0) {
-      await props.sendComment(comment, localStorage.getItem('token'), _id)
-      setComment('')
+    if (comment.length !== 0 && props.loggedUser) {
+
+      await props.sendComment(comment, props.loggedUser.response.token, _id, props.allItineraries)
       props.getItineraries(props.id)
-    } else {
+      setComment('')
+
+    } else if (comment.length === 0 && props.loggedUser) {
       alert.error("You can't send empty comments")
+    } else {
+      alert.error('You must be logged in to comment')
     }
   }
   const handleLikes = async () => {
-    await props.like(localStorage.getItem('token'), _id)
+    await props.like(props.loggedUser.response.token, _id)
     props.getItineraries(props.id)
+
   }
 
   const handleDislike = async () => {
-    await props.dislike(localStorage.getItem('token'), _id)
+    await props.dislike(props.loggedUser.response.token, _id)
     props.getItineraries(props.id)
   }
   return (
@@ -61,7 +65,7 @@ const Itinerary = (props) => {
         <div className="itInfo">
           <p className="price"><span className="bold">Price:</span>{[...Array(price)].map((money, idx) => <FaRegMoneyBillAlt className="cash" key={idx} />)}</p>
           <p className="hours"><span className="bold">Duration:</span> {[...Array(duration)].map(clocks => <FcClock className="clock" key={uuidv4()} />)} </p>
-          <p className="likes">{likes.includes(userliked) ? <IoIosHeart className="heart" onClick={handleDislike} /> : <IoIosHeartEmpty className="heart" onClick={handleLikes} />}<span className="likesSpan" >{likes.length}</span></p>
+          <p className="likes">{likes.includes(userliked) ? <IoIosHeart className="heart" onClick={props.loggedUser && handleDislike} /> : <IoIosHeartEmpty className="heart" onClick={props.loggedUser && handleLikes} />}<span className="likesSpan" >{likes.length}</span></p>
         </div>
         <div className="hashtags">
           {hastags.map(hashtag => <p className="hashtag" key={hashtag}>#{hashtag}</p>)}
@@ -80,7 +84,7 @@ const Itinerary = (props) => {
                 {comments.map(comment => <Comment comment={comment} key={comment._id} IdItinerary={_id} id={props.id} />)}
               </div>
               <div className="inputDiv">
-                <input type="text" name="content" placeholder='You must be logged in to comment' className="commentInput" onChange={handleComments} value={comment} />
+                <input type="text" name="content" placeholder={props.loggedUser ? 'Leave your comment here!' : 'You must be logged in to comment'} className="commentInput" onChange={handleComments} value={comment} disabled={!props.loggedUser && true} />
                 <MdSend className="commentIcon" onClick={sendComment} id={_id} />
               </div>
             </div>
@@ -98,15 +102,15 @@ const Itinerary = (props) => {
 
 const mapDispatchToProps = {
   getItineraries: itinerariesActions.getItineraries,
-  sendComment: commentsActions.sendComment,
-  like: likeActions.like,
-  dislike: likeActions.dislike
+  sendComment: itinerariesActions.sendComment,
+  like: itinerariesActions.like,
+  dislike: itinerariesActions.dislike
 }
 
 const mapStateToProps = state => {
   return {
-    loggedUser: state.userR.loggedUser
-
+    loggedUser: state.userR.loggedUser,
+    itineraries: state.itinerariesR.itineraries,
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary)

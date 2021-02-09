@@ -9,11 +9,11 @@ const commentsController = {
       {$push: {comments: {userName: req.user.firstName + " " + req.user.lastName, content:req.body.comment, email: req.user.email}}},
       {new: true}
         )
-      .then( async comment=> {
+      .then( async newComment=> {
         return res.json({
           success: true,
           response: {
-            comment, 
+            newComment, 
             user}
         })
       })

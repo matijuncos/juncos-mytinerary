@@ -435,7 +435,7 @@ margin-bottom: 1vh;
 }
 .activityImg{
   background-size: cover;
-  min-width: 16rem;
+  min-width: 12rem;
   width: 15vw;
   height: 20vh;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.432);
@@ -523,6 +523,10 @@ margin-bottom: 1vh;
   overflow-x: auto;
   max-height: 24vh ;
 }
+.insideComment{
+  display: flex;
+}
+
 .comments::-webkit-scrollbar{
   width: 10px;
 }
@@ -561,6 +565,7 @@ margin-bottom: 1vh;
 }
 .commentIcons{
   display: flex;
+  align-self: flex-end;
   align-items: flex-start;
   justify-content: flex-start;
   margin: 0 0 0 3vh;
@@ -616,11 +621,11 @@ margin-bottom: 1vh;
   color: rgb(68, 68, 68);
   cursor: pointer;
 }
-.editComment:active{
-  color: rgb(128, 83, 0);
+.editComment:hover{
+  color: rgb(212, 152, 39);
 }
-.trash:active{
-  color: rgb(172, 0, 0);
+.trash:hover{
+  color: rgb(214, 4, 4);
 }
 
 .failedSearch {
@@ -757,6 +762,7 @@ margin-bottom: 1vh;
 .form{
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 30vw;
   min-width: 340px;
   text-align: center;
@@ -772,18 +778,22 @@ margin-bottom: 1vh;
 .form select{
   padding: 1.2vh;
   width: 90%;
-  margin: 1vh;
+  margin: 1vh auto;
   border-radius: 6px;
   outline: none;
   border: solid 1px gray;
   color: black;
+}
+.form .error{
+  color: rgb(105, 199, 199);
 }
 .form h2{
   margin: 1vh;
   font-size: 1.8rem;
 }
 .logUserBtn{
-  margin: 1.5vh;
+  margin: 1.5vh auto;
+  width: 90%;
   color: rgb(255, 255, 255);
   border: solid rgb(255, 255, 255) 1px;
   border-radius: 6px;

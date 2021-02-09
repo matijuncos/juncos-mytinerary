@@ -1,6 +1,6 @@
 const initState = {
   itineraries: [],
-  loading: true
+  
 }
 
 const itinerariesReducer = (state = initState, action) =>{
@@ -10,7 +10,14 @@ const itinerariesReducer = (state = initState, action) =>{
         ...state,
         itineraries: action.payload,
       }
-    default: return  state
+    case "SEND_COMMENT":
+      console.log(action.payload)
+      return{
+        ...state,
+   //    itineraries: action.payload
+      }
+     
+    default: return state
   }
 }
 export default itinerariesReducer

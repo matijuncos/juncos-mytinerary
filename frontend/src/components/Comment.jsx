@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { BsTrash } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 import { connect } from 'react-redux';
-import commentsActions from '../Redux/actions/commentsActions';
 import itinerariesActions from '../Redux/actions/itinerariesActions';
 import { MdSend } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
@@ -16,7 +15,7 @@ const Comment = (props) => {
   const deleteComment = async (e) => {
     const commentId = e.currentTarget.id
     const IdItinerary = props.IdItinerary
-    await props.deleteComment(localStorage.getItem('token'), commentId, IdItinerary)
+    await props.deleteComment(props.loggedUser.response.token, commentId, IdItinerary)
     props.getItineraries(props.id)
   }
 
@@ -32,7 +31,7 @@ const Comment = (props) => {
   const sendUpdate = async (e) => {
     const commentId = e.currentTarget.id
     const IdItinerary = props.IdItinerary
-    await props.updateComment(localStorage.getItem('token'), updatedComment, commentId, IdItinerary)
+    await props.updateComment(props.loggedUser.response.token, updatedComment, commentId, IdItinerary)
     props.getItineraries(props.id)
     setVisible(!visible)
   }
@@ -55,17 +54,19 @@ const Comment = (props) => {
           </>
         ) : (
             <>
-              <div>
-                <p className="user">{comment.userName}: </p>
-                <p className="content">{comment.content}</p>
-              </div>
-              <div className="commentIcons">
-                {props.comment.email === user && (
-                  <>
-                    <BsPencilSquare onClick={updateComment} className="editComment" />
-                    <BsTrash onClick={deleteComment} className="editComment trash" id={comment._id} />
-                  </>
-                )}
+              <div className="insideComment">
+                <div>
+                  <p className="user">{comment.userName}: </p>
+                  <p className="content">{comment.content}</p>
+                </div>
+                <div className="commentIcons">
+                  {props.comment.email === user && (
+                    <>
+                      <BsPencilSquare onClick={updateComment} className="editComment" />
+                      <BsTrash onClick={deleteComment} className="editComment trash" id={comment._id} />
+                    </>
+                  )}
+                </div>
               </div>
             </>
           )}
@@ -75,15 +76,14 @@ const Comment = (props) => {
 }
 
 const mapDispatchToProps = {
-  deleteComment: commentsActions.deleteComment,
+  deleteComment: itinerariesActions.deleteComment,
   getItineraries: itinerariesActions.getItineraries,
-  updateComment: commentsActions.updateComment
+  updateComment: itinerariesActions.updateComment
 
 }
 
 const mapStateToProps = state => {
   return {
-    data: state.commentR.comments,
     loggedUser: state.userR.loggedUser
   }
 }

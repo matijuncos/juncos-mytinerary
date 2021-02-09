@@ -23,12 +23,12 @@ const validator = {
           "string.empty": "Your mail address is a required field",
           "any.required": "Your mail address is a required field",
           "string.email": "Please write a valid email address",
-          "array.unique": "There's already an account with that mail account"
+          "array.unique": "The account already exists"
         }),
-        password: Joi.string().trim().required().min(6).messages({
+        password: Joi.string().trim().required().min(6).pattern(/(?=.*\d)(?=.*[A-z])/).messages({
           "string.base": "Sorry! It looks like something went wrong. Please try later.",
           "string.empty": "Your password is a required field",
-          "string.pattern.base": "Your password mas contain at least a letter and a number",
+          "string.pattern.base": "Your password must contain a letter and a number",
           "string.min": "Your passwrod must contain at least 6 characters",
           "any.required": "Your password is a required field",
 

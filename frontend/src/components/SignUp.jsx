@@ -49,14 +49,9 @@ const SignUp = (props) => {
   }
 
   const handleClick = async () => {
-    // if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.userPicture === '' || newUser.country === '') {
-    //   alert.error("Please complete the form to sign up!")
-    //   return false
-    // }
+
     const res = await signUp(newUser)
     if (res && !res.success) {
-      console.log(props)
-      console.log(res)
       res.errors.map(error => {
         failedInputs[error.context.label] = error.message
         return false
@@ -64,6 +59,7 @@ const SignUp = (props) => {
       })
       setErrors(failedInputs)
     } else {
+
       alert.success("Your account was created successfully!")
       props.history.push('/')
     }
@@ -73,16 +69,20 @@ const SignUp = (props) => {
     if (response.error) {
       alert.error('Try Again')
     } else {
-
-      await signUp({
+      const res = await signUp({
         firstName: response.profileObj.givenName,
         lastName: response.profileObj.familyName,
         email: response.profileObj.email,
-        password: response.profileObj.googleId,
+        password: `a${response.profileObj.googleId}`,
         userPicture: response.profileObj.imageUrl,
-        country: 'Argentina'
+        country: 'Argentina',
       })
+      if (res && !res.success) {
+        alert.error("There's already an account with that mail")
+        return false
+      }
       alert.success("Your account was created successfully!")
+
     }
   }
   return (

@@ -33,10 +33,11 @@ const SignIn = (props) => {
     var response = await props.signIn(logUser)
     if (response && !response.success) {
       setErrorMessage(response.response)
-      return false
+
+    } else {
+      alert.success('Welcome dear user!')
+      props.history.push('/')
     }
-    alert.success('Welcome dear user!')
-    props.history.push('/')
   }
 
   const responseGoogle = async (response) => {
@@ -57,7 +58,7 @@ const SignIn = (props) => {
       <div className="form">
         <GiWorld className="worldIcon" />
         <h2>Sign in!</h2>
-        <p>{errorMessage}</p>
+        <p className="error">{errorMessage}</p>
         <input type="email" name="email" placeholder="Please, enter your email adress" onChange={handleInput} />
         <input type="password" name="password" placeholder="Please, enter your password" onChange={handleInput} />
         <button className="logUserBtn" onClick={handleClick}>Sign in!</button>
