@@ -842,6 +842,16 @@ margin-bottom: 1vh;
   position: relative;
   margin: 1vh 0;
 }
+.passWordDiv{
+  position: relative;
+  width: 100%;
+}
+.eye{
+  position: absolute;
+  top: 22px;
+  right: 25px;
+  color: grey;
+}
 .small{
   position: absolute;
   top: -15px;

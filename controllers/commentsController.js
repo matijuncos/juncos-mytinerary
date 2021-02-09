@@ -2,7 +2,6 @@ const Itinerary = require('../models/Itinerary')
 
 const commentsController = {
   addComments: (req, res) =>{
-    const user = req.user._id
     const iTid = req.body.id
 
     Itinerary.findOneAndUpdate({_id: iTid}, 
@@ -37,8 +36,7 @@ const commentsController = {
   updateComment:(req, res) =>{
     const commentId = req.body.commentId
     const IdItinerary = req.body.IdItinerary
-    const token = req.body.token
-    const user = req.user
+
 
     Itinerary.findOneAndUpdate({_id: IdItinerary, 'comments._id': commentId}, 
       {$set: {'comments.$.content': req.body.updatedComment}},//ver bien como va acá y si es el metod set

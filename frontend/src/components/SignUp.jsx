@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { GiWorld } from "react-icons/gi";
 import axios from 'axios';
+import { FaEye } from "react-icons/fa";
+import logo from '../assets/logov9.png'
 import { connect } from 'react-redux'
 import userActions from '../Redux/actions/userActions';
 import { GoogleLogin } from 'react-google-login';
@@ -10,6 +12,8 @@ import { useAlert } from 'react-alert'
 
 const SignUp = (props) => {
   const alert = useAlert()
+
+  const [hidden, setHidden] = useState(true)
   const { signUp } = props
   const [newUser, setNewUser] = useState({
     firstName: '',
@@ -89,8 +93,7 @@ const SignUp = (props) => {
     <div className="centrar forms">
 
       <div className="form">
-        <GiWorld className="worldIcon" />
-        <h2>Sign up!</h2>
+        <img src={logo} alt="" />        <h2>Sign up!</h2>
         <div className="signupInput">
           <small className="small">{errors.firstName && errors.firstName}</small>
           <input type="text" name="firstName" placeholder="Please, enter your first name" onChange={handleForm} autoComplete="off" />
@@ -105,7 +108,9 @@ const SignUp = (props) => {
         </div>
         <div className="signupInput">
           <small className="small">{errors.password && errors.password}</small>
-          <input type="password" name="password" placeholder="Please, enter your password" onChange={handleForm} autoComplete="off" />
+          <FaEye className="eye" onClick={() => setHidden(!hidden)} />
+
+          <input type={hidden ? "password" : "text"} name="password" placeholder="Please, enter your password" onChange={handleForm} autoComplete="off" />
         </div>
         <div className="signupInput">
           <small className="small">{errors.userPicture && errors.userPicture}</small>
