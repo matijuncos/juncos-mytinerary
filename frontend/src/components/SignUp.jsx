@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { GiWorld } from "react-icons/gi";
 import axios from 'axios';
 import { FaEye } from "react-icons/fa";
 import logo from '../assets/logov9.png'

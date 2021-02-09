@@ -37,7 +37,6 @@ const Itinerary = (props) => {
     if (comment.length !== 0 && props.loggedUser) {
       await props.sendComment(comment, props.loggedUser.response.token, _id)
       setComment('')
-
     } else if (comment.length === 0 && props.loggedUser) {
       alert.error("You can't send empty comments")
     } else {
@@ -46,11 +45,11 @@ const Itinerary = (props) => {
   }
   const handleLikes = async () => {
     await props.like(props.loggedUser.response.token, _id)
-
   }
 
   const handleDislike = async () => {
     await props.dislike(props.loggedUser.response.token, _id)
+
   }
   return (
     <>

@@ -766,13 +766,14 @@ margin-bottom: 1vh;
   width: 30vw;
   min-width: 340px;
   text-align: center;
-  padding: 2vh;
+  padding: 3vh;
   background-color: rgb(46, 46, 46);
   border-radius: 12px;
   box-shadow: 12px 12px 28px rgba(0, 0, 0, 0.705);
 }
 .forms{
   background-image: url('../src/assets/trip2.jpg');
+  
 }
 .form input,
 .form select{
@@ -827,7 +828,7 @@ margin-bottom: 1vh;
   background-color: white;
   width: 50%;
   min-width: 14rem;
-  margin: 2vh auto;
+  margin:32vh auto;
   color: black;
   border-radius: 4px;
   padding: 1vh 1.5vh;
@@ -901,6 +902,7 @@ margin-bottom: 1vh;
   #root {
     overflow-x: hidden;
   }
+
   .slogan h2 {
     text-align: center;
     padding: 3vw;
@@ -984,5 +986,8 @@ margin-bottom: 1vh;
   width: 100%;
   background-color: transparent;
 
+}
+.forms{
+  min-height: 86vh;
 }
 }

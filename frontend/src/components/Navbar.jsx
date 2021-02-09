@@ -20,6 +20,7 @@ function Navbar(props) {
     }
 
     const signOut = () => {
+        openNav()
         alert.show('Hope to see you soon!')
         props.signOut()
         localStorage.clear()
@@ -34,8 +35,8 @@ function Navbar(props) {
                     <div className={userlinks ? 'userLinks' : 'userLinks visible'}>
                         {!loggedUser ? (
                             <>
-                                <Link to='/signin' className="signInLinks">Sign In</Link>
-                                <Link to='/signup' className="signInLinks">Sign Up</Link>
+                                <Link to='/signin' className="signInLinks" onClick={openNav}>Sign In</Link>
+                                <Link to='/signup' className="signInLinks" onClick={openNav}>Sign Up</Link>
                             </>
                         ) : (
                                 <Link to='/' className="signInLinks" onClick={signOut}>Sign Out</Link>
@@ -46,10 +47,10 @@ function Navbar(props) {
                     {loggedUser && 'Hi there, ' + loggedUser.response.firstName + '!'}
                 </div>
                 <div>
-                    <NavLink to="/" className="navLinks " exact={true}>
+                    <NavLink to="/" className="navLinks " exact={true} onClick={openNav}>
                         <p><FaHome className="icons" /> Home</p>
                     </NavLink>
-                    <NavLink to="/cities" className="navLinks">
+                    <NavLink to="/cities" className="navLinks" onClick={openNav}>
                         <p><FaPaperPlane className="icons" /> Cities</p>
                     </NavLink>
                 </div>
