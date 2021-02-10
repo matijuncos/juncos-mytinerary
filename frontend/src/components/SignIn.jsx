@@ -26,7 +26,7 @@ const SignIn = (props) => {
     })
   }
 
-  const handleClick = async () => {
+  const singIn = async () => {
     setErrorMessage('')
     if (logUser.email === '' || logUser.password === '') {
       setErrorMessage('No fields should be empty')
@@ -35,10 +35,7 @@ const SignIn = (props) => {
     var response = await props.signIn(logUser)
     if (response && !response.success) {
       setErrorMessage(response.data.response)
-
     } else {
-
-      toast.success('welcome!')
       props.history.push('/')
     }
   }
@@ -59,6 +56,12 @@ const SignIn = (props) => {
     }
   }
 
+  const enterKey = (e) => {
+    if (e.key === 'Enter') {
+      singIn()
+    }
+  }
+
   return (
     <div className="centrar forms">
       <div className="form">
@@ -68,9 +71,9 @@ const SignIn = (props) => {
         <input type="email" name="email" placeholder="Please, enter your email adress" onChange={handleInput} />
         <div className="passWordDiv">
           <FaEye className="eye" onClick={() => setHidden(!hidden)} />
-          <input type={hidden ? 'password' : 'text'} name="password" placeholder="Please, enter your password" onChange={handleInput} />
+          <input type={hidden ? 'password' : 'text'} name="password" placeholder="Please, enter your password" onChange={handleInput} onKeyDown={enterKey} />
         </div>
-        <button className="logUserBtn" onClick={handleClick}>Sign in!</button>
+        <button className="logUserBtn" onClick={singIn}>Sign in!</button>
         <p> Or you can sign in with your Google account</p>
         <div className="googleBtn">
           <GoogleLogin

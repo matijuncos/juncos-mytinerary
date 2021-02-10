@@ -27,6 +27,7 @@ const userController = {
       response: errors.length === 0 && { //si no hay errores, la respuesta será el token, el nombre y la foto de usuario.
         token, 
         firstName: savedUser.firstName, 
+        lastName: savedUser.lastName,
         email: savedUser.email, 
         userPicture: savedUser.userPicture,
         id: savedUser._id
@@ -51,6 +52,7 @@ const userController = {
       response: {
         token, 
         firstName: existingUser.firstName, 
+        lastName: existingUser.lastName,
         email: existingUser.email, 
         userPicture: existingUser.userPicture,
         id: existingUser._id
@@ -63,6 +65,7 @@ const userController = {
         response: {
           token: req.body.token, 
           firstName: req.user.firstName,
+          lastName: req.user.lastName,
           email: req.user.email,
           userPicture: req.user.userPicture,
           id: req.user._id

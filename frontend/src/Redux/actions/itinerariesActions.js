@@ -19,6 +19,7 @@ const itinerariesActions = {
       }
     }
   },
+
   sendComment: (comment, token, id) =>{
     return async (dispatch, getState) =>{
       try{
@@ -29,7 +30,7 @@ const itinerariesActions = {
         })
         
         dispatch({
-          type: "COMMENTS_LIKES",
+          type: "COMMENTS",
           payload: response.data
           
         })
@@ -49,8 +50,8 @@ const itinerariesActions = {
           }
         })
         dispatch({
-          type: "COMMENTS_LIKES",
-          payload: response.data
+          type: "COMMENTS",
+         payload: response.data
           
         })
       }catch(error){
@@ -69,7 +70,7 @@ const itinerariesActions = {
           }
           })
           dispatch({
-            type: "COMMENTS_LIKES",
+            type: "COMMENTS",
             payload: response.data
           })
           
@@ -90,7 +91,7 @@ const itinerariesActions = {
           }
         })
         dispatch({
-          type: "COMMENTS_LIKES",
+          type: "LIKES",
           payload: response.data
         })
         
@@ -111,7 +112,7 @@ const itinerariesActions = {
           }
         })
         dispatch({
-          type: "COMMENTS_LIKES",
+          type: "LIKES",
           payload: response.data
         })
       }catch(err){

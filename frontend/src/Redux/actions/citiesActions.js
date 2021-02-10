@@ -25,7 +25,8 @@ const citiesAction = {
         payload: input
       })
     }
-  }
+  },
+  
 }
 
 export default citiesAction

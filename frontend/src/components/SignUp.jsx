@@ -10,9 +10,9 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = (props) => {
+  const { signUp } = props
 
   const [hidden, setHidden] = useState(true)
-  const { signUp } = props
   const [newUser, setNewUser] = useState({
     firstName: '',
     lastName: '',
@@ -47,7 +47,6 @@ const SignUp = (props) => {
       ...newUser,
       [property]: inputValue
     })
-
   }
 
   const handleClick = async () => {
@@ -112,7 +111,7 @@ const SignUp = (props) => {
         <div className="signupInput">
           <small className="small">{errors.country && errors.country}</small>
           <select name="country" id="" onChange={handleForm}>
-            <option >Choose your country</option>
+            <option>Choose your country</option>
             {countryList.map(country => <option value={country.name} key={country.name}>{country.name}</option>)}
           </select>
         </div>

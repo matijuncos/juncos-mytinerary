@@ -13,7 +13,7 @@ const Comment = (props) => {
   const [user, setUser] = useState('')
 
   const deleteComment = async (e) => {
-    const commentId = e.currentTarget.id
+    const commentId = props.comment._id
     const IdItinerary = props.IdItinerary
     await props.deleteComment(props.loggedUser.response.token, commentId, IdItinerary)
   }
@@ -24,13 +24,18 @@ const Comment = (props) => {
 
   const handleInput = (e) => {
     setUpdatedComment(e.target.value)
-
   }
-  const sendUpdate = async (e) => {
-    const commentId = e.currentTarget.id
+
+  const sendUpdate = (e) => {
+    const commentId = props.comment._id
     const IdItinerary = props.IdItinerary
-    await props.updateComment(props.loggedUser.response.token, updatedComment, commentId, IdItinerary)
+    props.updateComment(props.loggedUser.response.token, updatedComment, commentId, IdItinerary)
     setVisible(!visible)
+  }
+  const enterKey = (e) => {
+    if (e.key === 'Enter') {
+      sendUpdate()
+    }
   }
   useEffect(() => {
     if (props.loggedUser) {
@@ -45,7 +50,7 @@ const Comment = (props) => {
           <>
             <div className="inputDiv update">
               <ImCancelCircle className="cancelBtn" onClick={() => setVisible(!visible)} />
-              <input type="text" name="content" placeholder='Write your comment here' className="commentInput update" onChange={handleInput} value={updatedComment} autoFocus autoComplete="off" />
+              <input type="text" name="content" placeholder='Write your comment here' className="commentInput update" onKeyDown={enterKey} onChange={handleInput} value={updatedComment} autoFocus autoComplete="off" />
               <MdSend className="updateIcon" onClick={sendUpdate} id={comment._id} />
             </div>
           </>

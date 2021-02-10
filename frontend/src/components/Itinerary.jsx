@@ -32,9 +32,9 @@ const Itinerary = (props) => {
   }, [props.loggedUser])
 
   const sendComment = async () => {
-
     if (comment.length !== 0 && props.loggedUser) {
-      await props.sendComment(comment, props.loggedUser.response.token, _id)
+      comments.push({ userName: props.loggedUser.response.firstName + ' ' + props.loggedUser.response.lastName, content: comment, _id: uuidv4(), email: props.loggedUser.response.email })
+      props.sendComment(comment, props.loggedUser.response.token, _id)
       setComment('')
     } else if (comment.length === 0 && props.loggedUser) {
       toast.error("You can't send empty comments")
@@ -42,12 +42,24 @@ const Itinerary = (props) => {
       toast.error('You must be logged in to comment')
     }
   }
+
+  const enterKey = (e) => {
+    if (e.key === 'Enter') {
+      sendComment()
+    }
+  }
   const handleLikes = async () => {
-    await props.like(props.loggedUser.response.token, _id)
+    if (!props.loggedUser) {
+      toast.error('You must be logged in to like an itinerary')
+    } else {
+      props.like(props.loggedUser.response.token, _id)
+    }
   }
 
   const handleDislike = async () => {
-    await props.dislike(props.loggedUser.response.token, _id)
+
+    props.dislike(props.loggedUser.response.token, _id)
+
 
   }
   return (
@@ -59,7 +71,7 @@ const Itinerary = (props) => {
         <div className="itInfo">
           <p className="price"><span className="bold">Price:</span>{[...Array(price)].map((money, idx) => <FaRegMoneyBillAlt className="cash" key={idx} />)}</p>
           <p className="hours"><span className="bold">Duration:</span> {[...Array(duration)].map(clocks => <FcClock className="clock" key={uuidv4()} />)} </p>
-          <p className="likes">{likes.includes(userliked) ? <IoIosHeart className="heart" onClick={props.loggedUser && handleDislike} /> : <IoIosHeartEmpty className="heart" onClick={props.loggedUser && handleLikes} />}<span className="likesSpan" >{likes.length}</span></p>
+          <p className="likes">{likes.includes(userliked) ? <IoIosHeart className="heart" onClick={props.loggedUser && handleDislike} /> : <IoIosHeartEmpty className="heart" onClick={handleLikes} />}<span className="likesSpan" >{likes.length}</span></p>
         </div>
         <div className="hashtags">
           {hastags.map(hashtag => <p className="hashtag" key={hashtag}>#{hashtag}</p>)}
@@ -78,7 +90,7 @@ const Itinerary = (props) => {
                 {comments.map(comment => <Comment comment={comment} key={comment._id} IdItinerary={_id} id={props.id} />)}
               </div>
               <div className="inputDiv">
-                <input type="text" name="content" placeholder={props.loggedUser ? 'Leave your comment here!' : 'You must be logged in to comment'} className="commentInput" onChange={handleComments} value={comment} disabled={!props.loggedUser && true} autoComplete="off" />
+                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Leave your comment here!' : 'You must be logged in to comment'} className="commentInput" onChange={handleComments} value={comment} disabled={!props.loggedUser && true} autoComplete="off" />
                 <MdSend className="commentIcon" onClick={sendComment} id={_id} />
               </div>
             </div>

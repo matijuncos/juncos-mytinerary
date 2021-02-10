@@ -1,5 +1,5 @@
 const initState = {
-  itineraries: []
+  itineraries: [],
   
 }
 
@@ -10,13 +10,17 @@ const itinerariesReducer = (state = initState, action) =>{
         ...state,
         itineraries: action.payload,
       }
-    case "COMMENTS_LIKES":
-
+    case "COMMENTS":
       return{
         ...state,
         itineraries: state.itineraries.map( itinerary => itinerary._id === action.payload.response._id ? action.payload.response : itinerary)
       }
-      
+      case "LIKES":
+        return{
+          ...state,
+          itineraries: state.itineraries.map( itinerary => itinerary._id === action.payload.response._id ? action.payload.response : itinerary)
+        }
+
     default: return state
   }
 }

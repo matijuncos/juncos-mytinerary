@@ -5,7 +5,6 @@ import { FaHome, FaPaperPlane } from "react-icons/fa";
 import Itinerary from './Itinerary';
 import { connect } from 'react-redux'
 import itinerariesActions from '../Redux/actions/itinerariesActions';
-//import Loader from './Loader';
 
 const City = (props) => {
     const { cities, itineraries, getItineraries } = props
@@ -22,7 +21,6 @@ const City = (props) => {
         }
 
     }, [cities, id, getItineraries, props.history])
-
     if (itineraries.length === 0) {
         return <NoItineraries city={actualCity} />
     }

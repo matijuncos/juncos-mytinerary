@@ -33,7 +33,7 @@ const userActions = {
           type: "USER_LOG",
           payload: response.data
         })
-        toast.success("Welcome")
+        toast.success("Welcome " +response.data.response.firstName)
 
       }catch(err){
         toast.error("Oops! Something went wrong!")

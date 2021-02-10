@@ -1,6 +1,7 @@
 const initState = {
   cities: [],
   filteredCities: [],
+  allItineraries: []
 }
 
 const citiesReducer = (state = initState, action) =>{
