@@ -606,8 +606,8 @@ margin-bottom: 1vh;
 }
 .commentIcon{
   position: absolute;
-  top: 15px;
-  right: .8rem;
+  top: 30%;
+  right: 1.5%;
   font-size: 1.7rem;
   color: rgb(69, 69, 76);
   cursor: pointer;
@@ -848,10 +848,12 @@ margin-bottom: 1vh;
   width: 100%;
 }
 .eye{
+  cursor: pointer;
   position: absolute;
-  top: 22px;
-  right: 35px;
+  top: 35%;
+  right: 7%;
   color: grey;
+  font-size: 1.2rem;
 }
 .small{
   position: absolute;

@@ -15,8 +15,7 @@ const itinerariesActions = {
           
         })
     }catch(error){
-      console.log(error)
-      toast.error("Oops! Something went wrong")
+        toast.error("Oops! Something went wrong")
       }
     }
   },

@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { GiWorld } from "react-icons/gi";
 import { FaEye } from "react-icons/fa";
 import { GoogleLogin } from 'react-google-login';
 import { connect } from 'react-redux'
 import userActions from '../Redux/actions/userActions';
-import { useAlert } from 'react-alert'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from '../assets/logov9.png'
 
+
 const SignIn = (props) => {
-  const alert = useAlert();
 
   const [logUser, setLogUser] = useState({
     email: '',
@@ -37,7 +37,8 @@ const SignIn = (props) => {
       setErrorMessage(response.data.response)
 
     } else {
-      alert.success('welcome')
+
+      toast.success('welcome!')
       props.history.push('/')
     }
   }
@@ -45,7 +46,7 @@ const SignIn = (props) => {
   const responseGoogle = async (response) => {
 
     if (response.error) {
-      alert.error('Try Again, please')
+      toast.error('Try Again, please')
 
     } else {
       const res = await props.signIn({

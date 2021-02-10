@@ -6,12 +6,12 @@ import { FaHome, FaPaperPlane } from "react-icons/fa";
 import { BiCaretDown } from "react-icons/bi";
 import { connect } from 'react-redux';
 import userActions from '../Redux/actions/userActions';
-import { useAlert } from 'react-alert'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 function Navbar(props) {
-    const alert = useAlert()
     const { loggedUser } = props
     const [nav, setNav] = useState(true);
     const [userlinks, setUserLinks] = useState(true)
@@ -21,7 +21,7 @@ function Navbar(props) {
 
     const signOut = () => {
         openNav()
-        alert.show('Hope to see you soon!')
+        toast.info('Hope to see you soon!')
         props.signOut()
         localStorage.clear()
 

@@ -11,7 +11,7 @@ const itinerariesReducer = (state = initState, action) =>{
         itineraries: action.payload,
       }
     case "COMMENTS_LIKES":
-      console.log(action.payload.response)
+
       return{
         ...state,
         itineraries: state.itineraries.map( itinerary => itinerary._id === action.payload.response._id ? action.payload.response : itinerary)

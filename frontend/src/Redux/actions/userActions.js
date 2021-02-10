@@ -14,7 +14,8 @@ const userActions = {
           type: "USER_LOG",
           payload: response.data
         })
-        
+        toast.success("Your account was created succesfully!")
+
       }catch(err){
         console.log(err)
         toast.error("Oops! Something went wrong!")
@@ -32,6 +33,8 @@ const userActions = {
           type: "USER_LOG",
           payload: response.data
         })
+        toast.success("Welcome")
+
       }catch(err){
         toast.error("Oops! Something went wrong!")
         console.log(err)

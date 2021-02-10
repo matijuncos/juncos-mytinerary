@@ -6,11 +6,10 @@ import logo from '../assets/logov9.png'
 import { connect } from 'react-redux'
 import userActions from '../Redux/actions/userActions';
 import { GoogleLogin } from 'react-google-login';
-import { useAlert } from 'react-alert'
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = (props) => {
-  const alert = useAlert()
 
   const [hidden, setHidden] = useState(true)
   const { signUp } = props
@@ -61,16 +60,12 @@ const SignUp = (props) => {
 
       })
       setErrors(failedInputs)
-    } else {
-
-      alert.success("Your account was created successfully!")
-      props.history.push('/')
     }
   }
 
   const responseGoogle = async (response) => {
     if (response.error) {
-      alert.error('Try Again')
+      toast.error('Try Again, please')
     } else {
       const res = await signUp({
         firstName: response.profileObj.givenName,
@@ -81,10 +76,9 @@ const SignUp = (props) => {
         country: 'Argentina',
       })
       if (res && !res.success) {
-        alert.error("There's already an account with that mail")
+        toast.error("There's already an account with that mail :)")
         return false
       }
-      alert.success("Your account was created successfully!")
 
     }
   }

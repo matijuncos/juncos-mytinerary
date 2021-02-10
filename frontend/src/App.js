@@ -52,8 +52,7 @@ function App(props) {
   }
   return (
   <>
-        <ToastContainer />
-
+    <ToastContainer />
     <Router>
       <Navbar/>
           {links}

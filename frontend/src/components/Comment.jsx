@@ -17,7 +17,6 @@ const Comment = (props) => {
     const IdItinerary = props.IdItinerary
     await props.deleteComment(props.loggedUser.response.token, commentId, IdItinerary)
   }
-
   const updateComment = () => {
     setVisible(!visible)
     setUpdatedComment(comment.content)
@@ -37,7 +36,7 @@ const Comment = (props) => {
     if (props.loggedUser) {
       setUser(props.loggedUser.response.email)
     }
-  }, [])
+  }, [props.loggedUser])
 
   return (
     <>

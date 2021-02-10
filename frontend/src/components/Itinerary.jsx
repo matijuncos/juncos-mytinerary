@@ -8,13 +8,11 @@ import Activity from './Activity';
 import { FcClock } from "react-icons/fc";
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import { useAlert } from 'react-alert'
 import itinerariesActions from '../Redux/actions/itinerariesActions';
-
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Itinerary = (props) => {
-  const alert = useAlert()
   const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities, _id } = props.itinerary
   const [visible, setVisible] = useState(false)
   const [comment, setComment] = useState('')
@@ -31,16 +29,17 @@ const Itinerary = (props) => {
     if (props.loggedUser) {
       setUserLiked(props.loggedUser.response.id)
     }
-  }, [])
+  }, [props.loggedUser])
 
   const sendComment = async () => {
+
     if (comment.length !== 0 && props.loggedUser) {
       await props.sendComment(comment, props.loggedUser.response.token, _id)
       setComment('')
     } else if (comment.length === 0 && props.loggedUser) {
-      alert.error("You can't send empty comments")
+      toast.error("You can't send empty comments")
     } else {
-      alert.error('You must be logged in to comment')
+      toast.error('You must be logged in to comment')
     }
   }
   const handleLikes = async () => {
