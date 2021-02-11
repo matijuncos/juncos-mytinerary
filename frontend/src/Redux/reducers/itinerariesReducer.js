@@ -1,6 +1,5 @@
 const initState = {
-  itineraries: [],
-  
+  itineraries: []
 }
 
 const itinerariesReducer = (state = initState, action) =>{
