@@ -17,4 +17,4 @@ app.use('/api', router) //sila ruta es api, escucha a router q esta en index.js
 const port = process.env.PORT || 4000
 const host = process.env.HOST || '0.0.0.0'
 
-app.listen(port, host, ()=> console.log('App listening on PORT 4000'))
+app.listen(port, host, console.log('App listening on PORT 4000'))
