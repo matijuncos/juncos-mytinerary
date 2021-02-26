@@ -1,6 +1,8 @@
 const express = require('express')
-require('dotenv').config()
+const path = require('path')
+
 const cors = require('cors') //para que se pueda consumir
+require('dotenv').config()
 const router = require('./routes/index')
 require('./config/database')
 const app =express()
@@ -13,5 +15,7 @@ app.use(express.json()) //formato de archivos
 app.use('/api', router) //sila ruta es api, escucha a router q esta en index.js
 
 //Levanto servidor
+const port = process.env.PORT || 4000
+const host = process.env.HOST || '0.0.0.0'
 
-app.listen(4000, ()=> console.log('App listening on PORT 4000'))
+app.listen(port, host, ()=> console.log('App listening on PORT 4000'))
