@@ -21,7 +21,7 @@ const commentsController = {
     const IdItinerary = req.body.IdItinerary
 
     Itinerary.findOneAndUpdate({_id: IdItinerary}, 
-       {$pull: {comments: {_id: commentId}}},//ver bien que va acá
+       {$pull: {comments: {_id: commentId}}},
        {new: true}
     )
     .then( newComment => res.json({

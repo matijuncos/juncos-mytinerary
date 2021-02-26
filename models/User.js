@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   email: String,
   password: String,
-  userPicture: String,
-  country: String,
+  //userPicture: String,
+  //country: String,
 })
 
 const User = mongoose.model('user', userSchema)

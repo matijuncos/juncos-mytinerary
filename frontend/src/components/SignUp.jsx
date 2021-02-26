@@ -53,11 +53,12 @@ const SignUp = (props) => {
 
     const res = await signUp(newUser)
     if (res && !res.success) {
-      res.errors.map(error => {
-        failedInputs[error.context.label] = error.message
-        return false
+      console.log(res)
+      // res.errors.map(error => {
+      //   failedInputs[error.label] = error.message
+      //   return false
 
-      })
+      //      })
       setErrors(failedInputs)
     }
   }

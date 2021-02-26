@@ -16,6 +16,7 @@ const Itinerary = (props) => {
   const { userName, duration, userPic, itineraryTitle, likes, hastags, comments, price, activities, _id } = props.itinerary
   const [visible, setVisible] = useState(false)
   const [comment, setComment] = useState('')
+  const [commentObj, setCommentObj] = useState({})
   const [userliked, setUserLiked] = useState('')
   const handleVisible = () => {
     setVisible(!visible)
@@ -23,6 +24,7 @@ const Itinerary = (props) => {
 
   const handleComments = (e) => {
     setComment(e.target.value)
+    setCommentObj({ userName: props.loggedUser.response.firstName + ' ' + props.loggedUser.response.lastName, content: e.target.value, _id: _id, email: props.loggedUser.response.email })
   }
 
   useEffect(() => {
@@ -31,16 +33,17 @@ const Itinerary = (props) => {
     }
   }, [props.loggedUser])
 
-  const sendComment = async () => {
+  const sendComment = () => {
     if (comment.length !== 0 && props.loggedUser) {
-      comments.push({ userName: props.loggedUser.response.firstName + ' ' + props.loggedUser.response.lastName, content: comment, _id: uuidv4(), email: props.loggedUser.response.email })
-      props.sendComment(comment, props.loggedUser.response.token, _id)
+      comments.push(comment)
+      props.sendComment(comment, props.loggedUser.response.token, _id, commentObj)
       setComment('')
     } else if (comment.length === 0 && props.loggedUser) {
       toast.error("You can't send empty comments")
     } else {
       toast.error('You must be logged in to comment')
     }
+
   }
 
   const enterKey = (e) => {
@@ -57,10 +60,7 @@ const Itinerary = (props) => {
   }
 
   const handleDislike = async () => {
-
     props.dislike(props.loggedUser.response.token, _id)
-
-
   }
   return (
     <>

@@ -20,15 +20,15 @@ const itinerariesActions = {
     }
   },
 
-  sendComment: (comment, token, id) =>{
+  sendComment: (comment, token, id, commentObj) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/comments/', {comment, token, id},{
+        const response = await axios.post('http://localhost:4000/api/comments/', {comment, commentObj, id},{
           headers:{
             Authorization: 'Bearer ' + token
           }
         })
-        
+                
         dispatch({
           type: "COMMENTS",
           payload: response.data
