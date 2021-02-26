@@ -1,5 +1,4 @@
 const express = require('express')
-const path = require('path')
 
 const cors = require('cors') //para que se pueda consumir
 require('dotenv').config()
