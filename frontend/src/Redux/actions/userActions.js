@@ -4,9 +4,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const userActions = {
   signUp: (newUser) =>{
+    
+
     return async (dispatch, getState) =>{
       try{
         const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/user/signup', newUser)
+        console.log(response)
         if(!response.data.success){
           return response.data
         }

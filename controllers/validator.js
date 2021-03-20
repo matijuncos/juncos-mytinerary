@@ -33,13 +33,13 @@ const validator = {
           "any.required": "Your password is a required field",
 
         }),
-        // userPicture: Joi.string().uri().required().messages({
-        //   "string.uri": "You should use a valid URL",
-        //   "string.empty": "You should use a valid URL",
-        //   "string.base": "Sorry! It looks like something went wrong. Please try later.",
-        //   "any.required": "You should use a valid URL",
+        userPicture: Joi.string().uri().required().messages({
+          "string.uri": "You should use a valid URL",
+          "string.empty": "You should use a valid URL",
+          "string.base": "Sorry! It looks like something went wrong. Please try later.",
+          "any.required": "You should use a valid URL",
 
-        // }),
+        }),
         // country: Joi.string().required().messages({
         //   "string.empty": "Please, choose a country",
         //   "any.required": "Please, choose a country",
