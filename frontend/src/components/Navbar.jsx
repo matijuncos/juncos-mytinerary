@@ -26,6 +26,7 @@ function Navbar(props) {
         localStorage.clear()
 
     }
+    console.log(loggedUser)
     return (
         <nav>
             <FiMenu className="burger" onClick={openNav} />
@@ -39,8 +40,8 @@ function Navbar(props) {
                                 <Link to='/signup' className="signInLinks" onClick={openNav}>Sign Up</Link>
                             </>
                         ) : (
-                                <Link to='/' className="signInLinks" onClick={signOut}>Sign Out</Link>
-                            )
+                            <Link to='/' className="signInLinks" onClick={signOut}>Sign Out</Link>
+                        )
                         }
                     </div>
                     <BiCaretDown className="dropDown" />

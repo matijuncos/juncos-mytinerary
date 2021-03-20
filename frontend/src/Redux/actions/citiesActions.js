@@ -6,7 +6,7 @@ const citiesAction = {
   getCities: () =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await fetch('http://localhost:4000/api/cities')
+        const response = await fetch('https://juncos-mytinerary.herokuapp.com/api/cities')
         const cities = await response.json()
         dispatch({
           type: "GET_CITIES",

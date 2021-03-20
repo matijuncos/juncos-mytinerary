@@ -7,7 +7,7 @@ const itinerariesActions = {
   getItineraries: (id) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await fetch('http://localhost:4000/api/itineraries/'+id) //Esta dirección será variable
+        const response = await fetch('https://juncos-mytinerary.herokuapp.com/api/itineraries/'+id) //Esta dirección será variable
         const itineraries = await response.json()
         dispatch({
           type: "GET_ITINERARIES",
@@ -15,7 +15,7 @@ const itinerariesActions = {
           
         })
     }catch(error){
-        toast.error("Oops! Something went wrong")
+        toast.error("Oops! Something went wronggggg")
       }
     }
   },
@@ -23,7 +23,7 @@ const itinerariesActions = {
   sendComment: (comment, token, id, commentObj) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/comments/', {comment, commentObj, id},{
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/comments/', {comment, commentObj, id},{
           headers:{
             Authorization: 'Bearer ' + token
           }
@@ -44,7 +44,7 @@ const itinerariesActions = {
   deleteComment: (token, commentId, IdItinerary) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.put('http://localhost:4000/api/comments', { token, commentId, IdItinerary},{
+        const response = await axios.put('https://juncos-mytinerary.herokuapp.com/api/comments', { token, commentId, IdItinerary},{
           headers: {
             Authorization: 'Bearer ' + token
           }
@@ -64,7 +64,7 @@ const itinerariesActions = {
   updateComment : (token, updatedComment, commentId, IdItinerary) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/commentupdate', { token, updatedComment, commentId, IdItinerary},{
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/commentupdate', { token, updatedComment, commentId, IdItinerary},{
           headers: {
             Authorization: 'Bearer ' + token
           }
@@ -84,7 +84,7 @@ const itinerariesActions = {
   like: (token, itinerayId) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/like', {token, itinerayId},
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/like', {token, itinerayId},
         {
           headers:{
             Authorization: 'Bearer ' + token
@@ -105,7 +105,7 @@ const itinerariesActions = {
   dislike: (token, itinerayId) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/dislike', {token, itinerayId},
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/dislike', {token, itinerayId},
         {
           headers:{
             Authorization: 'Bearer ' + token

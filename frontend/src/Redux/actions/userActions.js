@@ -6,7 +6,7 @@ const userActions = {
   signUp: (newUser) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/user/signup', newUser)
         if(!response.data.success){
           return response.data
         }
@@ -25,7 +25,7 @@ const userActions = {
   signIn: (user) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/user/signin', user)
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/user/signin', user)
         if(!response.data.success){
           return response.data
         }
@@ -51,7 +51,7 @@ const userActions = {
   preserveLog: (token) =>{
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/user/storage', {token}, {
+        const response = await axios.post('https://juncos-mytinerary.herokuapp.com/api/user/storage', {token}, {
           headers:{
             Authorization: 'Bearer ' + token
           }
