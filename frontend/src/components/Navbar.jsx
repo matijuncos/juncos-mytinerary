@@ -26,7 +26,6 @@ function Navbar(props) {
         localStorage.clear()
 
     }
-    console.log(loggedUser)
     return (
         <nav>
             <FiMenu className="burger" onClick={openNav} />

@@ -724,22 +724,23 @@ margin-bottom: 1vh;
 
 .userLinks{
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
-  top: 3.25rem;
-  left: 0;
+  top: 7.5vh;
+  left: -1rem;
   background-color: rgba(0, 0, 0, 0.815);
-  height: 0;
   overflow: hidden;
   width: 35vh;
+  height: 0;
   transition: all 0.3s ease;
   justify-content: center;
-  border-radius: 0 0 8px 8px;
+  border-radius: 8px;
 }
 
 .visible{
   height: 15vh;
   transition: all 0.3s ease;
+  display: flex;
 }
 
 .userLinksContainer{
