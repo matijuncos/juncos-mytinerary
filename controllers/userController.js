@@ -8,17 +8,16 @@ const userController = {
     var errors= []
     const usedUserName = await User.findOne({email: email}) //me fijo si ya existe alguien con ese mail
     if(usedUserName){
-      console.log('userexists')
       var error = {context: {label: 'email'}, message: "There's already an account with that mail"}
       errors.push(error)
     }
     if(errors.length === 0){ //si no han habido errores, hasheo el password y genero el nuevo usuario, con el password haseado
       const hashedPass = bcryptjs.hashSync(password, 10)
       const newUser = new User({
-        firstName, lastName, email, userPicture, country, password: hashedPass 
+        firstName, lastName, email, password: hashedPass , userPicture, country
       })
+
       var savedUser = await newUser.save() //aqui al nuevo usuario lo guardo en la BD y genero un token con los datos del usuario
-      console.log(newUser)
       var token = jwtoken.sign({...savedUser}, process.env.SECRET_KEY, {})
     }
     return res.json({//respuesta al frontend
