@@ -13,8 +13,14 @@ app.use(express.json()) //formato de archivos
 
 app.use('/api', router) //sila ruta es api, escucha a router q esta en index.js
 
-//Levanto servidor
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname+"/client/build/index.html"))
+  })
+}
+
 const port = process.env.PORT || 4000
 const host = process.env.HOST || '0.0.0.0'
 
-app.listen(port, host, console.log('App listening on PORT 4000'))
+app.listen(port, host, () => console.log(`App listening on port ${port}`))
