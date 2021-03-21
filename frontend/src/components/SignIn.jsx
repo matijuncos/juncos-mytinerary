@@ -41,6 +41,7 @@ const SignIn = (props) => {
   }
 
   const responseGoogle = async (response) => {
+    console.log(response)
 
     if (response.error) {
       toast.error('Try Again, please')

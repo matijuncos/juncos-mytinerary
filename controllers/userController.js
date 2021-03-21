@@ -16,6 +16,7 @@ const userController = {
       const hashedPass = bcryptjs.hashSync(password, 10)
       const newUser = new User({
         firstName, lastName, email, password: hashedPass, userPicture })
+        console.log(newUser)
       var savedUser = await newUser.save() //aqui al nuevo usuario lo guardo en la BD y genero un token con los datos del usuario
       var token = jwtoken.sign({...savedUser}, process.env.SECRET_KEY, {})
     }
