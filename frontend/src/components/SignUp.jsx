@@ -73,6 +73,7 @@ const SignUp = (props) => {
         email: response.profileObj.email,
         password: `a${response.profileObj.googleId}`,
         userPicture: response.profileObj.imageUrl,
+        country: 'Argentina',
       })
       if (res && !res.success) {
         toast.error("There's already an account with that mail :)")

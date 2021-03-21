@@ -4,19 +4,20 @@ const jwtoken = require('jsonwebtoken')
 
 const userController = {
   signUp: async (req, res) =>{
-    
-    const {firstName, lastName, email, password, userPicture} = req.body //son las propiedades que vienen desde el formulario del componente
+    console.log(req.body)
+    const {firstName, lastName, email, password, userPicture, country} = req.body //son las propiedades que vienen desde el formulario del componente
     var errors= []
     const usedUserName = await User.findOne({email: email}) //me fijo si ya existe alguien con ese mail
     if(usedUserName){
+      console.log('userexists')
       var error = {context: {label: 'email'}, message: "There's already an account with that mail"}
       errors.push(error)
     }
     if(errors.length === 0){ //si no han habido errores, hasheo el password y genero el nuevo usuario, con el password haseado
       const hashedPass = bcryptjs.hashSync(password, 10)
       const newUser = new User({
-        firstName, lastName, email, password: hashedPass, userPicture })
-        console.log(newUser)
+        firstName, lastName, email, password: hashedPass , userPicture, country
+      })
       var savedUser = await newUser.save() //aqui al nuevo usuario lo guardo en la BD y genero un token con los datos del usuario
       var token = jwtoken.sign({...savedUser}, process.env.SECRET_KEY, {})
     }

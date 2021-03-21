@@ -40,10 +40,10 @@ const validator = {
           "any.required": "You should use a valid URL",
 
         }),
-        // country: Joi.string().required().messages({
-        //   "string.empty": "Please, choose a country",
-        //   "any.required": "Please, choose a country",
-        // })
+        country: Joi.string().required().messages({
+          "string.empty": "Please, choose a country",
+          "any.required": "Please, choose a country",
+        })
       })
 
       const validation = schema.validate( req.body, {abortEarly: false})
