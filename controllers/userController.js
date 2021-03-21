@@ -18,7 +18,7 @@ const userController = {
         firstName, lastName, email, userPicture, country, password: hashedPass 
       })
       var savedUser = await newUser.save() //aqui al nuevo usuario lo guardo en la BD y genero un token con los datos del usuario
-      console.log(savedUser)
+      console.log(newUser)
       var token = jwtoken.sign({...savedUser}, process.env.SECRET_KEY, {})
     }
     return res.json({//respuesta al frontend
