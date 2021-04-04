@@ -5,7 +5,7 @@ require('dotenv').config()
 const router = require('./routes/index')
 require('./config/database')
 const app =express()
-
+var path = require('path');
 //MIDDLEWARE
 app.use(cors()) //evito bloqueos para consumo de api
 app.use(express.json()) //formato de archivos
